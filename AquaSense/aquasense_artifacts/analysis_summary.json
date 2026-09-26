@@ -1,0 +1,7 @@
+{
+    "total_samples": 3276,
+    "total_features": 9,
+    "missing_values": 1434,
+    "potable_samples": 1278,
+    "not_potable_samples": 1998
+}

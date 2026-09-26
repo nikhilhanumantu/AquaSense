@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-dim":"#c0ddff","on-surface-variant":"#3f484e","surface-container-lowest":"#ffffff","tertiary-container":"#008751","primary-container":"#087ead","inverse-surface":"#043254","on-background":"#001d34","tertiary-fixed-dim":"#56df95","background":"#f8f9ff","on-primary-fixed-variant":"#004c6b","inverse-on-surface":"#e9f1ff","surface-container-low":"#eef4ff","on-error-container":"#93000a","surface-bright":"#f8f9ff","error-container":"#ffdad6","surface":"#f8f9ff","on-secondary-fixed-variant":"#004d64","surface-container-high":"#daeaff","on-primary-fixed":"#001e2d","secondary":"#006783","error":"#ba1a1a","secondary-container":"#40ccfd","tertiary-fixed":"#75fcaf","primary-fixed-dim":"#81cfff","on-secondary-container":"#00546c","on-tertiary-fixed-variant":"#00522f","on-primary-container":"#fffeff","surface-container":"#e4efff","surface-variant":"#d0e4ff","inverse-primary":"#81cfff","on-secondary-fixed":"#001f2a","surface-container-highest":"#d0e4ff","outline":"#6f787f","secondary-fixed-dim":"#64d3ff","on-tertiary":"#ffffff","on-secondary":"#ffffff","on-primary":"#ffffff","surface-tint":"#00658c","on-tertiary-container":"#fdfff9","primary":"#00648b","outline-variant":"#bfc8d0","primary-fixed":"#c6e7ff","on-tertiary-fixed":"#002110","secondary-fixed":"#bce9ff","on-error":"#ffffff","tertiary":"#006b3f","on-surface":"#001d34"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-sm":"0.5rem","gutter-mobile":"1rem","space-lg":"1.5rem","margin":"2.5rem","gutter":"1.5rem","space-xl":"2.5rem","space-md":"1rem","space-xs":"0.25rem","margin-mobile":"1.25rem"},"fontFamily":{"display-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-lg":["Inter"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"body-sm":["Inter"],"title-md":["Plus Jakarta Sans"],"label-md":["Inter"],"display-lg":["Plus Jakarta Sans"],"body-md":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"]},"fontSize":{"display-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"600"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-2xl shadow-[0_8px_32px_-4px_rgba(8,126,173,0.08)]">
+    <div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-gutter">
+        <a href="main.html" class="flex items-center gap-space-md hover:opacity-90 transition-opacity">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-secondary-container via-primary to-primary-container flex items-center justify-center shadow-[0_4px_16px_rgba(8,126,173,0.25)] relative">
+                <span class="material-symbols-outlined text-on-primary text-[22px]">water_drop</span>
+                <span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-tertiary-fixed-dim ring-2 ring-surface-container-lowest flex items-center justify-center">
+                    <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                </span>
+            </div>
+            <div>
+                <div class="flex items-center gap-space-xs">
+                    <span class="font-title-md text-title-md text-on-surface font-bold tracking-tight">AquaSense</span>
+                    <span class="font-label-sm text-label-sm uppercase px-space-xs py-0.5 rounded-full bg-surface-container-high text-primary font-semibold">AI</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-secondary font-medium">Safe Water · Healthy Tomorrow</p>
+            </div>
+        </a>
+        <nav class="hidden lg:flex items-center p-1.5 bg-surface-container-low/90 backdrop-blur-xl rounded-full shadow-[0_4px_20px_-2px_rgba(8,126,173,0.06)]">
+            <a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="main.html">Home</a>
+            <a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="predict.html">Predict</a>
+            <a aria-current="page" class="px-space-md py-space-xs rounded-full transition-all bg-primary-fixed text-on-primary-fixed-variant font-title-md shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.8)]" href="analysis.html">Analysis</a>
+            <a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="#models-benchmark">Models</a>
+            <a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="result.html">Latest Result</a>
+        </nav>
+        <div class="flex items-center gap-space-sm">
+            <button aria-label="Toggle light mode" id="theme-toggle-btn" class="w-10 h-10 rounded-full bg-surface-container-low/80 hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">light_mode</span>
+            </button>
+            <a href="predict.html" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary text-body-sm font-semibold hover:bg-primary-container transition-all shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                <span>New Test</span>
+            </a>
+            <!-- Mobile Menu Toggle Button -->
+            <button class="lg:hidden w-10 h-10 rounded-full bg-surface-container-low/80 hover:bg-surface-container-high flex items-center justify-center text-on-surface" id="mobile-menu-btn" type="button">
+                <span class="material-symbols-outlined text-[24px]">menu</span>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Dropdown Navigation -->
+    <div class="lg:hidden hidden bg-surface-container-lowest/95 border-t border-surface-container px-margin py-space-md backdrop-blur-xl transition-all" id="mobile-menu">
+        <div class="flex flex-col gap-2">
+            <a href="main.html" class="px-4 py-2.5 rounded-xl hover:bg-surface-container-low text-on-surface font-medium">Home</a>
+            <a href="predict.html" class="px-4 py-2.5 rounded-xl hover:bg-surface-container-low text-on-surface font-medium">Predict</a>
+            <a href="analysis.html" class="px-4 py-2.5 rounded-xl bg-primary-fixed text-on-primary-fixed-variant font-semibold">Analysis</a>
+            <a href="#models-benchmark" class="px-4 py-2.5 rounded-xl hover:bg-surface-container-low text-on-surface font-medium">Models</a>
+            <a href="result.html" class="px-4 py-2.5 rounded-xl hover:bg-surface-container-low text-on-surface font-medium">Latest Result</a>
+        </div>
+    </div>
+</header>
+<main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="max-w-7xl mx-auto w-full px-margin py-space-lg flex flex-col gap-space-lg">
+<!-- Top Action / Breadcrumb Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Telemetry &amp; Exploration</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm text-primary font-medium">Dataset v2.4.1</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">Data Analysis</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Explore the dataset distribution and relationships between water quality parameters.</p>
+</div>
+<div class="flex items-center gap-space-xs self-start sm:self-auto">
+<div class="flex items-center bg-surface-container-low rounded-full p-1 shadow-sm">
+<button class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-primary bg-primary shadow-sm transition-all" id="btn-raw">Overview</button>
+<button class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="btn-corr">Matrix</button>
+<button class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="btn-stats">Outliers</button>
+</div>
+<button class="w-9 h-9 rounded-full bg-surface-container-lowest hover:bg-surface-container-high flex items-center justify-center text-primary shadow-sm transition-colors" title="Export Dataset Insights">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+<!-- 4 Primary Analytic Glass Cards Grid (Faithfully replicating the bottom-left screen from layout reference) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-gutter items-stretch">
+<!-- Card 1: Potability Distribution (Col span 3 desktop) -->
+<div class="xl:col-span-3 flex flex-col justify-between bg-surface-container-lowest/80 backdrop-blur-xl p-space-lg rounded-xl shadow-[0_8px_32px_-4px_rgba(8,126,173,0.08)] relative overflow-hidden group hover:shadow-[0_12px_40px_-6px_rgba(8,126,173,0.14)] transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<div>
+<h2 class="font-title-md text-title-md text-on-surface">Potability Distribution</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Binary label allocation</span>
+</div>
+<span class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">pie_chart</span>
+</span>
+</div>
+<!-- Donut Visual (Inline SVG) -->
+<div class="relative flex items-center justify-center my-space-md">
+<svg class="w-48 h-48 -rotate-90 transform" viewbox="0 0 160 160">
+<!-- Background Ring -->
+<circle cx="80" cy="80" fill="transparent" r="60" stroke="#daeaff" stroke-width="20"></circle>
+<!-- Non-Potable Segment (61.0% = 377 * 0.61 ≈ 230) -->
+<circle class="opacity-80 transition-all duration-700" cx="80" cy="80" fill="transparent" r="60" stroke="#ba1a1a" stroke-dasharray="230 377" stroke-dashoffset="0" stroke-width="20"></circle>
+<!-- Potable Segment (39.0% = 377 * 0.39 ≈ 147, offset -230) -->
+<circle class="transition-all duration-700" cx="80" cy="80" fill="transparent" r="60" stroke="#008751" stroke-dasharray="147 377" stroke-dashoffset="-230" stroke-width="20"></circle>
+</svg>
+<!-- Donut Hole Content -->
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
+<span class="font-headline-md text-headline-md font-bold text-on-surface leading-none">3,276</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">Total Samples</span>
+</div>
+</div>
+<!-- Legend & Detailed Ratio Badges -->
+<div class="flex flex-col gap-space-xs mt-space-xs pt-space-xs bg-surface-container-low/60 p-space-sm rounded-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-tertiary-container shadow-sm"></span>
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Potable</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-title-md text-body-md font-bold text-tertiary">39.0%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">(1,278)</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-error shadow-sm"></span>
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Not Potable</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-title-md text-body-md font-bold text-error">61.0%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">(1,998)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: pH Distribution (Col span 3 desktop) -->
+<div class="xl:col-span-3 flex flex-col justify-between bg-surface-container-lowest/80 backdrop-blur-xl p-space-lg rounded-xl shadow-[0_8px_32px_-4px_rgba(8,126,173,0.08)] relative overflow-hidden group hover:shadow-[0_12px_40px_-6px_rgba(8,126,173,0.14)] transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<div>
+<h2 class="font-title-md text-title-md text-on-surface">pH Distribution</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Gaussian bell curve (μ=7.08)</span>
+</div>
+<span class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+</span>
+</div>
+<!-- Histogram Bar Chart with Normal Curve Overlay -->
+<div class="relative w-full h-48 flex items-end justify-between pt-space-md pb-space-sm px-1">
+<!-- Y-Axis labels (Absolute left) -->
+<div class="absolute left-0 top-2 bottom-6 flex flex-col justify-between text-right pr-2 pointer-events-none">
+<span class="font-label-sm text-[10px] text-on-surface-variant">200</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">150</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">100</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">50</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">0</span>
+</div>
+<!-- Chart Area with Gridlines -->
+<div class="w-full h-full pl-6 relative flex items-end justify-between gap-1">
+<!-- Background Horizontal Guides -->
+<div class="absolute inset-x-6 top-1 h-px bg-surface-variant/40"></div>
+<div class="absolute inset-x-6 top-1/4 h-px bg-surface-variant/40"></div>
+<div class="absolute inset-x-6 top-2/4 h-px bg-surface-variant/40"></div>
+<div class="absolute inset-x-6 top-3/4 h-px bg-surface-variant/40"></div>
+<!-- Normal Distribution Bell Curve SVG Overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none pl-6 overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="opacity-90 drop-shadow-sm" d="M 0 98 Q 15 97 25 90 T 40 55 T 50 12 T 60 55 T 75 90 T 100 98" fill="none" stroke="#087ead" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+<!-- Histogram Columns -->
+<div class="flex-1 bg-secondary-container/40 hover:bg-primary transition-colors rounded-t-sm h-[6%]" title="pH: 0-1 (12 samples)"></div>
+<div class="flex-1 bg-secondary-container/50 hover:bg-primary transition-colors rounded-t-sm h-[14%]" title="pH: 1-2 (28 samples)"></div>
+<div class="flex-1 bg-secondary-container/60 hover:bg-primary transition-colors rounded-t-sm h-[25%]" title="pH: 2-3 (50 samples)"></div>
+<div class="flex-1 bg-secondary-container/70 hover:bg-primary transition-colors rounded-t-sm h-[42%]" title="pH: 3-4 (84 samples)"></div>
+<div class="flex-1 bg-secondary-container/85 hover:bg-primary transition-colors rounded-t-sm h-[64%]" title="pH: 4-5 (128 samples)"></div>
+<div class="flex-1 bg-primary hover:bg-primary-container transition-colors rounded-t-sm h-[82%]" title="pH: 5-6 (164 samples)"></div>
+<div class="flex-1 bg-primary-container hover:bg-primary transition-colors rounded-t-sm h-[96%]" title="pH: 6-7 (192 samples)"></div>
+<div class="flex-1 bg-primary-container hover:bg-primary transition-colors rounded-t-sm h-[94%]" title="pH: 7-8 (188 samples)"></div>
+<div class="flex-1 bg-primary hover:bg-primary-container transition-colors rounded-t-sm h-[80%]" title="pH: 8-9 (160 samples)"></div>
+<div class="flex-1 bg-secondary-container/85 hover:bg-primary transition-colors rounded-t-sm h-[58%]" title="pH: 9-10 (116 samples)"></div>
+<div class="flex-1 bg-secondary-container/70 hover:bg-primary transition-colors rounded-t-sm h-[36%]" title="pH: 10-11 (72 samples)"></div>
+<div class="flex-1 bg-secondary-container/50 hover:bg-primary transition-colors rounded-t-sm h-[20%]" title="pH: 11-12 (40 samples)"></div>
+<div class="flex-1 bg-secondary-container/40 hover:bg-primary transition-colors rounded-t-sm h-[8%]" title="pH: 12-13 (16 samples)"></div>
+<div class="flex-1 bg-secondary-container/30 hover:bg-primary transition-colors rounded-t-sm h-[4%]" title="pH: 13-14 (8 samples)"></div>
+</div>
+</div>
+<!-- X-Axis Labels -->
+<div class="flex items-center justify-between pl-6 text-on-surface-variant font-label-sm text-[10px] mt-1">
+<span>0</span>
+<span>2</span>
+<span>4</span>
+<span>6</span>
+<span class="text-primary font-bold">8</span>
+<span>10</span>
+<span>12</span>
+<span>14</span>
+</div>
+<!-- Safe Drinking pH Range Badge -->
+<div class="mt-space-sm p-space-xs bg-surface-container rounded-lg flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+            Safe Range: 6.5 – 8.5
+          </span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">68.2% in threshold</span>
+</div>
+</div>
+<!-- Card 3: Correlation Heatmap (Col span 3 desktop) -->
+<div class="xl:col-span-3 flex flex-col justify-between bg-surface-container-lowest/80 backdrop-blur-xl p-space-lg rounded-xl shadow-[0_8px_32px_-4px_rgba(8,126,173,0.08)] relative overflow-hidden group hover:shadow-[0_12px_40px_-6px_rgba(8,126,173,0.14)] transition-all">
+<div class="flex items-center justify-between mb-space-xs">
+<div>
+<h2 class="font-title-md text-title-md text-on-surface">Correlation Heatmap</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pearson (r) Matrix 9x9</span>
+</div>
+<span class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+</span>
+</div>
+<!-- Heatmap Container with Labels and Color Bar -->
+<div class="flex items-center gap-space-xs my-space-xs">
+<!-- Parameter Row Labels -->
+<div class="flex flex-col justify-between h-44 text-[10px] font-label-sm text-on-surface-variant leading-none pr-1">
+<span class="truncate max-w-[55px]" title="pH">pH</span>
+<span class="truncate max-w-[55px]" title="Hardness">Hardness</span>
+<span class="truncate max-w-[55px]" title="Solids">Solids</span>
+<span class="truncate max-w-[55px]" title="Chloramines">Chloramines</span>
+<span class="truncate max-w-[55px]" title="Sulfate">Sulfate</span>
+<span class="truncate max-w-[55px]" title="Conductivity">Conductivity</span>
+<span class="truncate max-w-[55px]" title="Organic Carbon">Org Carbon</span>
+<span class="truncate max-w-[55px]" title="Trihalomethanes">Trihalometh</span>
+<span class="truncate max-w-[55px]" title="Turbidity">Turbidity</span>
+</div>
+<!-- 9x9 Grid (Rendered with pure semantic Tailwind background shifts) -->
+<div class="flex-1 grid grid-cols-9 gap-0.5 h-44 p-1 bg-surface-container-high/50 rounded-lg">
+<!-- Row 1: pH -->
+<div class="rounded-[2px] bg-primary/90" title="pH - pH: 1.0"></div>
+<div class="rounded-[2px] bg-surface-dim" title="pH - Hardness: 0.08"></div>
+<div class="rounded-[2px] bg-surface-container-high" title="pH - Solids: -0.08"></div>
+<div class="rounded-[2px] bg-secondary-fixed" title="pH - Chloramines: -0.03"></div>
+<div class="rounded-[2px] bg-surface-dim" title="pH - Sulfate: 0.01"></div>
+<div class="rounded-[2px] bg-surface-container" title="pH - Conductivity: 0.02"></div>
+<div class="rounded-[2px] bg-surface-container-high" title="pH - Org Carbon: 0.04"></div>
+<div class="rounded-[2px] bg-surface-dim" title="pH - Trihalomethanes: 0.03"></div>
+<div class="rounded-[2px] bg-surface-container-low" title="pH - Turbidity: -0.04"></div>
+<!-- Row 2: Hardness -->
+<div class="rounded-[2px] bg-surface-dim" title="Hardness - pH: 0.08"></div>
+<div class="rounded-[2px] bg-primary/90" title="Hardness - Hardness: 1.0"></div>
+<div class="rounded-[2px] bg-surface-container-highest" title="Hardness - Solids: -0.05"></div>
+<div class="rounded-[2px] bg-surface-dim" title="Hardness - Chloramines: -0.03"></div>
+<div class="rounded-[2px] bg-error-container" title="Hardness - Sulfate: -0.11"></div>
+<div class="rounded-[2px] bg-surface-container-low" title="Hardness - Conductivity: -0.02"></div>
+<div class="rounded-[2px] bg-surface-dim" title="Hardness - Org Carbon: 0.04"></div>
+<div class="rounded-[2px] bg-surface-container" title="Hardness - Trihalomethanes: -0.01"></div>
+<div class="rounded-[2px] bg-surface-dim" title="Hardness - Turbidity: -0.03"></div>
+<!-- Row 3: Solids -->
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<div class="rounded-[2px] bg-surface-container-highest"></div>
+<div class="rounded-[2px] bg-primary/90"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-error-container"></div>
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-secondary-fixed"></div>
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<!-- Row 4: Chloramines -->
+<div class="rounded-[2px] bg-secondary-fixed"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-primary/90"></div>
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container"></div>
+<!-- Row 5: Sulfate -->
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-error-container"></div>
+<div class="rounded-[2px] bg-error-container"></div>
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<div class="rounded-[2px] bg-primary/90"></div>
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<!-- Row 6: Conductivity -->
+<div class="rounded-[2px] bg-surface-container"></div>
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<div class="rounded-[2px] bg-primary/90"></div>
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<!-- Row 7: Organic Carbon -->
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<div class="rounded-[2px] bg-primary/90"></div>
+<div class="rounded-[2px] bg-surface-container"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<!-- Row 8: Trihalomethanes -->
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container"></div>
+<div class="rounded-[2px] bg-secondary-fixed"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container"></div>
+<div class="rounded-[2px] bg-primary/90"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<!-- Row 9: Turbidity -->
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container-high"></div>
+<div class="rounded-[2px] bg-surface-container"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-container-low"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-surface-dim"></div>
+<div class="rounded-[2px] bg-primary/90"></div>
+</div>
+<!-- Colorbar Gradient Guide on right -->
+<div class="flex flex-col justify-between items-center h-44 pl-1">
+<span class="font-label-sm text-[9px] text-on-surface-variant font-semibold">+1</span>
+<div class="w-2 flex-1 my-1 rounded-full bg-gradient-to-b from-primary via-surface-variant to-error-container"></div>
+<span class="font-label-sm text-[9px] text-on-surface-variant font-semibold">-1</span>
+</div>
+</div>
+<div class="mt-space-xs flex items-center justify-between text-on-surface-variant font-body-sm text-[11px]">
+<span>Max positive: <strong>Sulfate/Hardness</strong></span>
+<span class="text-secondary font-medium">Independent vars</span>
+</div>
+</div>
+<!-- Card 4: Feature Importance (XGBoost) (Col span 3 desktop) -->
+<div class="xl:col-span-3 flex flex-col justify-between bg-surface-container-lowest/80 backdrop-blur-xl p-space-lg rounded-xl shadow-[0_8px_32px_-4px_rgba(8,126,173,0.08)] relative overflow-hidden group hover:shadow-[0_12px_40px_-6px_rgba(8,126,173,0.14)] transition-all">
+<div class="flex items-center justify-between mb-space-xs">
+<div>
+<h2 class="font-title-md text-title-md text-on-surface">Feature Importance</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">XGBoost Gain Weighting</span>
+</div>
+<span class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">insights</span>
+</span>
+</div>
+<!-- Horizontal Bar Chart -->
+<div class="flex flex-col gap-1.5 my-space-xs">
+<!-- Item 1: pH (Top, 14.6%) -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface font-medium w-24 truncate" title="pH">pH</span>
+<div class="flex-1 bg-surface-container-high h-3.5 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 98%"></div>
+</div>
+<span class="font-label-sm text-[10px] text-primary font-semibold w-8 text-right">14.6%</span>
+</div>
+<!-- Item 2: Sulfate (14.0%) -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface font-medium w-24 truncate" title="Sulfate">Sulfate</span>
+<div class="flex-1 bg-surface-container-high h-3.5 rounded-full overflow-hidden flex">
+<div class="bg-primary-container h-full rounded-full transition-all duration-500" style="width: 94%"></div>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-semibold w-8 text-right">14.0%</span>
+</div>
+<!-- Item 3: Chloramines (12.6%) -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface font-medium w-24 truncate" title="Chloramines">Chloramines</span>
+<div class="flex-1 bg-surface-container-high h-3.5 rounded-full overflow-hidden flex">
+<div class="bg-secondary-container h-full rounded-full transition-all duration-500" style="width: 85%"></div>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-semibold w-8 text-right">12.6%</span>
+</div>
+<!-- Item 4: Hardness (11.9%) -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface font-medium w-24 truncate" title="Hardness">Hardness</span>
+<div class="flex-1 bg-surface-container-high h-3.5 rounded-full overflow-hidden flex">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 80%"></div>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-semibold w-8 text-right">11.9%</span>
+</div>
+<!-- Item 5: Solids (11.3%) -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface font-medium w-24 truncate" title="Solids">Solids</span>
+<div class="flex-1 bg-surface-container-high h-3.5 rounded-full overflow-hidden flex">
+<div class="bg-primary-fixed-dim h-full rounded-full transition-all duration-500" style="width: 76%"></div>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-semibold w-8 text-right">11.3%</span>
+</div>
+<!-- Item 6: Conductivity (9.4%) -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface font-medium w-24 truncate" title="Conductivity">Conductivity</span>
+<div class="flex-1 bg-surface-container-high h-3.5 rounded-full overflow-hidden flex">
+<div class="bg-secondary-fixed-dim h-full rounded-full transition-all duration-500" style="width: 63%"></div>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-semibold w-8 text-right">9.4%</span>
+</div>
+<!-- Item 7: Turbidity (9.1%) -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface font-medium w-24 truncate" title="Turbidity">Turbidity</span>
+<div class="flex-1 bg-surface-container-high h-3.5 rounded-full overflow-hidden flex">
+<div class="bg-secondary-fixed-dim h-full rounded-full transition-all duration-500" style="width: 61%"></div>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-semibold w-8 text-right">9.1%</span>
+</div>
+<!-- Item 8: Trihalomethanes (8.7%) -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface font-medium w-24 truncate" title="Trihalomethanes">Trihalometh</span>
+<div class="flex-1 bg-surface-container-high h-3.5 rounded-full overflow-hidden flex">
+<div class="bg-surface-dim h-full rounded-full transition-all duration-500" style="width: 58%"></div>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-semibold w-8 text-right">8.7%</span>
+</div>
+<!-- Item 9: Organic Carbon (8.4%) -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-[11px] text-on-surface font-medium w-24 truncate" title="Organic Carbon">Org. Carbon</span>
+<div class="flex-1 bg-surface-container-high h-3.5 rounded-full overflow-hidden flex">
+<div class="bg-surface-dim h-full rounded-full transition-all duration-500" style="width: 56%"></div>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-semibold w-8 text-right">8.4%</span>
+</div>
+</div>
+<!-- Scale Axis Marker -->
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-[10px] border-t border-surface-container-high pt-1 mt-1">
+<span>0%</span>
+<span>5%</span>
+<span>10%</span>
+<span>15% Weight</span>
+</div>
+</div>
+</div>
+<!-- Dataset Summary Metrics (4 Compact Pills / Badges below) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Metric 1: Total Samples -->
+<div class="flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-lowest/80 backdrop-blur-md shadow-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shadow-inner">
+<span class="material-symbols-outlined text-[24px]">database</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-on-surface-variant">Total Samples</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface truncate">3,276</span>
+<span class="font-body-sm text-body-sm text-tertiary flex items-center gap-0.5 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">check</span> Validated records
+          </span>
+</div>
+</div>
+<!-- Metric 2: Missing Values Handled -->
+<div class="flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-lowest/80 backdrop-blur-md shadow-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-inner">
+<span class="material-symbols-outlined text-[24px]">cleaning_services</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-on-surface-variant">Missing Values Handled</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface truncate">0 <span class="text-body-md font-normal text-on-surface-variant">(100% clean)</span></span>
+<span class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Imputed with KNN (k=5)</span>
+</div>
+</div>
+<!-- Metric 3: Features Evaluated -->
+<div class="flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-lowest/80 backdrop-blur-md shadow-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary shadow-inner">
+<span class="material-symbols-outlined text-[24px]">tune</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-on-surface-variant">Features Evaluated</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface truncate">9 Parameters</span>
+<span class="font-body-sm text-body-sm text-primary truncate mt-0.5">All physical &amp; chemical</span>
+</div>
+</div>
+<!-- Metric 4: Class Balance Ratio -->
+<div class="flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-lowest/80 backdrop-blur-md shadow-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant shadow-inner">
+<span class="material-symbols-outlined text-[24px]">balance</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-on-surface-variant">Class Balance Ratio</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface truncate">61 : 39</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate mt-0.5">Non-potable vs Potable</span>
+</div>
+</div>
+</div>
+<!-- Supplementary Analytical Context: Water Safety Threshold Table -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-xl rounded-xl p-space-lg shadow-[0_8px_32px_-4px_rgba(8,126,173,0.06)] flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">WHO &amp; EPA Compliance Standard Baselines</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Statistical bounds applied during neural validation and sensor drift compensation.</p>
+</div>
+<div class="flex items-center gap-space-xs text-body-sm text-secondary font-medium">
+<span class="material-symbols-outlined text-[16px] text-tertiary">verified</span>
+          Global Standards Active
+        </div>
+</div>
+<!-- Responsive Table -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md">
+<th class="py-space-xs px-space-md rounded-l-lg">Parameter</th>
+<th class="py-space-xs px-space-md">Mean (Dataset)</th>
+<th class="py-space-xs px-space-md">Std Dev</th>
+<th class="py-space-xs px-space-md">Safe Permissible Limit</th>
+<th class="py-space-xs px-space-md rounded-r-lg text-right">Status in Cohort</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high/40 font-body-md text-body-md text-on-surface">
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-space-sm px-space-md font-semibold flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                pH
+              </td>
+<td class="py-space-sm px-space-md">7.08</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">± 1.59</td>
+<td class="py-space-sm px-space-md font-medium text-secondary">6.50 – 8.50 pH</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">Optimal</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-space-sm px-space-md font-semibold flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+                Hardness
+              </td>
+<td class="py-space-sm px-space-md">196.37 mg/L</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">± 32.88</td>
+<td class="py-space-sm px-space-md font-medium text-secondary">&lt; 300 mg/L</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">Compliant</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-space-sm px-space-md font-semibold flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                Turbidity
+              </td>
+<td class="py-space-sm px-space-md">3.96 NTU</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">± 0.78</td>
+<td class="py-space-sm px-space-md font-medium text-secondary">&lt; 5.00 NTU</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">High Impact</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-space-sm px-space-md font-semibold flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                Chloramines
+              </td>
+<td class="py-space-sm px-space-md">7.12 ppm</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">± 1.58</td>
+<td class="py-space-sm px-space-md font-medium text-secondary">&lt; 4.00 ppm</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-error-container text-error font-label-sm text-label-sm font-semibold">Elevated</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<!-- Model Benchmark & Comparative Analysis Section -->
+<section id="models-benchmark" class="bg-surface-container-lowest/80 backdrop-blur-xl rounded-2xl p-space-lg md:p-space-xl shadow-[0_8px_32px_-4px_rgba(8,126,173,0.08)] flex flex-col gap-space-lg">
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm border-b border-surface-container-high/60 pb-space-md">
+    <div>
+      <div class="flex items-center gap-space-xs mb-1">
+        <span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm uppercase font-semibold">Trained Models</span>
+        <span class="text-outline text-label-sm">•</span>
+        <span class="font-label-sm text-label-sm text-secondary">Artifacts Verified from Training Pipeline</span>
+      </div>
+      <h2 class="font-headline-lg text-headline-md md:text-headline-lg text-on-surface font-bold tracking-tight">Machine Learning Model Benchmark</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-1">Cross-validated evaluation metrics across candidate architectures on 3,276 hydrochemical samples.</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">
+        <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+        Active: XGBoost Classifier
+      </span>
+    </div>
+  </div>
+
+  <!-- 4 Model Summary Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+    <!-- Card 1: XGBoost (Champion) -->
+    <div class="rounded-2xl p-space-md bg-gradient-to-b from-surface-container-lowest via-surface-container-low to-surface-container/60 border-2 border-primary/40 shadow-md relative overflow-hidden flex flex-col justify-between">
+      <div class="absolute top-3 right-3">
+        <span class="px-2 py-0.5 rounded-full bg-tertiary text-on-tertiary text-[11px] font-bold tracking-wide uppercase">Active Model</span>
+      </div>
+      <div>
+        <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center mb-3 shadow-md shadow-primary/20">
+          <span class="material-symbols-outlined text-[22px]">rocket_launch</span>
+        </div>
+        <h3 class="font-title-md text-headline-sm text-on-surface font-bold">XGBoost</h3>
+        <span class="font-body-sm text-body-sm text-secondary font-medium">Gradient Boosted Trees</span>
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-surface-container-high">
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Accuracy</span>
+            <span class="text-title-md font-bold text-on-surface">65.55%</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Recall</span>
+            <span class="text-title-md font-bold text-tertiary">48.44%</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">F1 Score</span>
+            <span class="text-title-md font-bold text-on-surface">0.5030</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Artifact Size</span>
+            <span class="text-title-md font-bold text-secondary">468 KB</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-lowest/80 p-2 rounded-lg">Optimal toxic recall &amp; 53x lighter memory footprint than Random Forest.</p>
+    </div>
+
+    <!-- Card 2: Random Forest -->
+    <div class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm flex flex-col justify-between">
+      <div>
+        <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center mb-3">
+          <span class="material-symbols-outlined text-[22px]">forest</span>
+        </div>
+        <h3 class="font-title-md text-headline-sm text-on-surface font-bold">Random Forest</h3>
+        <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Bagged Ensemble</span>
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-surface-container-high">
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Accuracy</span>
+            <span class="text-title-md font-bold text-on-surface">67.23%</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Recall</span>
+            <span class="text-title-md font-bold text-on-surface">45.70%</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">F1 Score</span>
+            <span class="text-title-md font-bold text-on-surface">0.5072</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Artifact Size</span>
+            <span class="text-title-md font-bold text-on-surface-variant">24.9 MB</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-low/60 p-2 rounded-lg">Highest raw accuracy, but lower recall on hazardous contaminants.</p>
+    </div>
+
+    <!-- Card 3: Decision Tree -->
+    <div class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm flex flex-col justify-between">
+      <div>
+        <div class="w-10 h-10 rounded-xl bg-surface-container-high text-secondary flex items-center justify-center mb-3">
+          <span class="material-symbols-outlined text-[22px]">account_tree</span>
+        </div>
+        <h3 class="font-title-md text-headline-sm text-on-surface font-bold">Decision Tree</h3>
+        <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Single Decision Tree</span>
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-surface-container-high">
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Accuracy</span>
+            <span class="text-title-md font-bold text-on-surface">59.60%</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Recall</span>
+            <span class="text-title-md font-bold text-on-surface">47.66%</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">F1 Score</span>
+            <span class="text-title-md font-bold text-on-surface">0.4647</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Artifact Size</span>
+            <span class="text-title-md font-bold text-on-surface-variant">62 KB</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-low/60 p-2 rounded-lg">Fast inference with rule clarity, but prone to high variance.</p>
+    </div>
+
+    <!-- Card 4: Logistic Regression -->
+    <div class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm flex flex-col justify-between">
+      <div>
+        <div class="w-10 h-10 rounded-xl bg-surface-container-high text-error flex items-center justify-center mb-3">
+          <span class="material-symbols-outlined text-[22px]">linear_scale</span>
+        </div>
+        <h3 class="font-title-md text-headline-sm text-on-surface font-bold">Logistic Reg.</h3>
+        <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Linear Sigmoid Classifier</span>
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-surface-container-high">
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Accuracy</span>
+            <span class="text-title-md font-bold text-on-surface">61.59%</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Recall</span>
+            <span class="text-title-md font-bold text-error">3.52%</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">F1 Score</span>
+            <span class="text-title-md font-bold text-error">0.0662</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-on-surface-variant block">Artifact Size</span>
+            <span class="text-title-md font-bold text-on-surface-variant">1.2 KB</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-[12px] text-error mt-3 bg-error-container/30 p-2 rounded-lg">Fails non-linear decision boundaries; misses 96.5% of hazardous samples.</p>
+    </div>
+  </div>
+
+  <!-- Interactive Comparison Table -->
+  <div class="overflow-x-auto w-full mt-2">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md">
+          <th class="py-3 px-4 rounded-l-xl">Algorithm</th>
+          <th class="py-3 px-4">Accuracy</th>
+          <th class="py-3 px-4">Precision</th>
+          <th class="py-3 px-4">Recall</th>
+          <th class="py-3 px-4">F1 Score</th>
+          <th class="py-3 px-4">AUC-ROC</th>
+          <th class="py-3 px-4 rounded-r-xl text-right">Deployment Status</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-surface-container-high/40 font-body-md text-body-md text-on-surface">
+        <tr class="bg-primary/5 hover:bg-primary/10 transition-colors font-semibold">
+          <td class="py-3.5 px-4 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+            <span>XGBoost (Active)</span>
+          </td>
+          <td class="py-3.5 px-4">65.55%</td>
+          <td class="py-3.5 px-4">52.38%</td>
+          <td class="py-3.5 px-4 text-tertiary font-bold">48.44%</td>
+          <td class="py-3.5 px-4">0.5030</td>
+          <td class="py-3.5 px-4">0.6483</td>
+          <td class="py-3.5 px-4 text-right">
+            <span class="px-2.5 py-1 rounded-full bg-tertiary text-on-tertiary text-[11px] font-bold">Production</span>
+          </td>
+        </tr>
+        <tr class="hover:bg-surface-container-low/40 transition-colors">
+          <td class="py-3.5 px-4 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+            <span>Random Forest</span>
+          </td>
+          <td class="py-3.5 px-4">67.23%</td>
+          <td class="py-3.5 px-4">56.94%</td>
+          <td class="py-3.5 px-4">45.70%</td>
+          <td class="py-3.5 px-4">0.5072</td>
+          <td class="py-3.5 px-4">0.6698</td>
+          <td class="py-3.5 px-4 text-right">
+            <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-medium">Benchmark</span>
+          </td>
+        </tr>
+        <tr class="hover:bg-surface-container-low/40 transition-colors">
+          <td class="py-3.5 px-4 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+            <span>Decision Tree</span>
+          </td>
+          <td class="py-3.5 px-4">59.60%</td>
+          <td class="py-3.5 px-4">45.33%</td>
+          <td class="py-3.5 px-4">47.66%</td>
+          <td class="py-3.5 px-4">0.4647</td>
+          <td class="py-3.5 px-4">0.5843</td>
+          <td class="py-3.5 px-4 text-right">
+            <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-medium">Evaluated</span>
+          </td>
+        </tr>
+        <tr class="hover:bg-surface-container-low/40 transition-colors">
+          <td class="py-3.5 px-4 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+            <span>Logistic Regression</span>
+          </td>
+          <td class="py-3.5 px-4">61.59%</td>
+          <td class="py-3.5 px-4">56.25%</td>
+          <td class="py-3.5 px-4 text-error">3.52%</td>
+          <td class="py-3.5 px-4 text-error">0.0662</td>
+          <td class="py-3.5 px-4">0.5085</td>
+          <td class="py-3.5 px-4 text-right">
+            <span class="px-2.5 py-1 rounded-full bg-error-container text-error text-[11px] font-medium">Deprecated</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CTA Box linking to Predict -->
+  <div class="mt-space-md p-space-lg rounded-2xl bg-gradient-to-r from-primary-container via-secondary-container to-tertiary-fixed text-on-primary-container flex flex-col sm:flex-row items-center justify-between gap-space-md shadow-lg shadow-primary/10">
+    <div class="flex items-center gap-space-md">
+      <div class="w-12 h-12 rounded-full bg-surface-container-lowest/20 flex items-center justify-center backdrop-blur-md">
+        <span class="material-symbols-outlined text-[28px] text-white">science</span>
+      </div>
+      <div>
+        <h3 class="font-headline-sm text-white font-bold">Ready to analyze water potability?</h3>
+        <p class="font-body-md text-white/90">Run your 9 chemical parameters through the calibrated XGBoost model now.</p>
+      </div>
+    </div>
+    <a href="predict.html" class="px-space-lg py-3 rounded-full bg-white text-primary font-bold hover:bg-surface-container-low transition-all shadow-md flex items-center gap-2 flex-shrink-0">
+      <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+      <span>Run Prediction Now</span>
+    </a>
+  </div>
+</section>
+
+</div>
+</div>
+</main>
+
+<script src="app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof setupThemeToggle === 'function') setupThemeToggle();
+
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Interactive filter toggle buttons
+    const btnRaw = document.getElementById('btn-raw');
+    const btnCorr = document.getElementById('btn-corr');
+    const btnStats = document.getElementById('btn-stats');
+    const filterBtns = [btnRaw, btnCorr, btnStats].filter(Boolean);
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.className = 'px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all';
+        });
+        btn.className = 'px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-primary bg-primary shadow-sm transition-all';
+      });
+    });
+  });
+</script>
+<footer class="w-full bg-surface-container-low/70 backdrop-blur-md"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center pb-space-lg"><div class="md:col-span-6 flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs"><div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[16px]">water_drop</span></div><span class="font-headline-sm text-headline-sm text-on-surface">AquaSense</span></div><p class="font-body-md text-body-md text-secondary">Every Drop Counts · Keep Our Water Safe</p></div><div class="md:col-span-6 flex flex-wrap md:justify-end items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-lowest shadow-[0_4px_16px_rgba(8,126,173,0.06)]"><span class="material-symbols-outlined text-tertiary text-[18px]">eco</span><span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Real-time Telemetry Active</span></div><div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-lowest shadow-[0_4px_16px_rgba(8,126,173,0.06)]"><span class="material-symbols-outlined text-primary text-[18px]">neurology</span><span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Neural Predictor 99.4%</span></div></div></div><div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 AquaSense Stewardship Inc. Algorithmic Environmental Protection.</p><div class="flex items-center gap-space-md font-body-sm text-body-sm text-secondary"><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a><a class="hover:text-primary transition-colors" href="#">Sensor Network</a><a class="hover:text-primary transition-colors" href="#">Compliance Standard</a></div></div></div></footer></body></html>
