@@ -132,6 +132,3 @@ python train_and_analyze.py
 
 ---
 
-## License
-
-This project is licensed under the MIT License.
