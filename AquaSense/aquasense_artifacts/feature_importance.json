@@ -1,0 +1,154 @@
+{
+    "xgboost": [
+        {
+            "Feature": "ph",
+            "Importance": 0.14423273503780365
+        },
+        {
+            "Feature": "Sulfate",
+            "Importance": 0.13170747458934784
+        },
+        {
+            "Feature": "Chloramines",
+            "Importance": 0.1273159682750702
+        },
+        {
+            "Feature": "Hardness",
+            "Importance": 0.12084529548883438
+        },
+        {
+            "Feature": "Solids",
+            "Importance": 0.11180919408798218
+        },
+        {
+            "Feature": "Turbidity",
+            "Importance": 0.09440278261899948
+        },
+        {
+            "Feature": "Trihalomethanes",
+            "Importance": 0.09410230815410614
+        },
+        {
+            "Feature": "Conductivity",
+            "Importance": 0.09214065968990326
+        },
+        {
+            "Feature": "Organic_carbon",
+            "Importance": 0.08344358950853348
+        }
+    ],
+    "random_forest": [
+        {
+            "Feature": "ph",
+            "Importance": 0.1332532639646368
+        },
+        {
+            "Feature": "Sulfate",
+            "Importance": 0.1282749054545256
+        },
+        {
+            "Feature": "Hardness",
+            "Importance": 0.12153363070256507
+        },
+        {
+            "Feature": "Chloramines",
+            "Importance": 0.11737329011525596
+        },
+        {
+            "Feature": "Solids",
+            "Importance": 0.11273927091960662
+        },
+        {
+            "Feature": "Conductivity",
+            "Importance": 0.09917094001028655
+        },
+        {
+            "Feature": "Turbidity",
+            "Importance": 0.09692877567261934
+        },
+        {
+            "Feature": "Organic_carbon",
+            "Importance": 0.0965068830603485
+        },
+        {
+            "Feature": "Trihalomethanes",
+            "Importance": 0.0942190401001555
+        }
+    ],
+    "decision_tree": [
+        {
+            "Feature": "Sulfate",
+            "Importance": 0.23206424545727483
+        },
+        {
+            "Feature": "ph",
+            "Importance": 0.19813417668938202
+        },
+        {
+            "Feature": "Chloramines",
+            "Importance": 0.1793891836050292
+        },
+        {
+            "Feature": "Hardness",
+            "Importance": 0.1271384692336875
+        },
+        {
+            "Feature": "Solids",
+            "Importance": 0.09468106729137943
+        },
+        {
+            "Feature": "Trihalomethanes",
+            "Importance": 0.0862736763988841
+        },
+        {
+            "Feature": "Turbidity",
+            "Importance": 0.04379729970216011
+        },
+        {
+            "Feature": "Conductivity",
+            "Importance": 0.031125725866536204
+        },
+        {
+            "Feature": "Organic_carbon",
+            "Importance": 0.007396155755666621
+        }
+    ],
+    "logistic_regression": [
+        {
+            "Feature": "Solids",
+            "Coefficient": 0.059262489354149545
+        },
+        {
+            "Feature": "Chloramines",
+            "Coefficient": 0.04125449416127625
+        },
+        {
+            "Feature": "Organic_carbon",
+            "Coefficient": -0.028627716296217662
+        },
+        {
+            "Feature": "ph",
+            "Coefficient": 0.025633913883333227
+        },
+        {
+            "Feature": "Sulfate",
+            "Coefficient": -0.013301112270649052
+        },
+        {
+            "Feature": "Trihalomethanes",
+            "Coefficient": 0.00819386098334668
+        },
+        {
+            "Feature": "Conductivity",
+            "Coefficient": 0.006084000779433034
+        },
+        {
+            "Feature": "Turbidity",
+            "Coefficient": 0.00241813995381568
+        },
+        {
+            "Feature": "Hardness",
+            "Coefficient": -0.00212866946427988
+        }
+    ]
+}

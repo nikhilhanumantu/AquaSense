@@ -1,0 +1,5 @@
+Model,Accuracy,Precision,Recall,F1-Score,ROC-AUC,ConfusionMatrix
+XGBoost,0.625,0.521,0.4844,0.502,0.6437,"{'tn': 286, 'fp': 114, 'fn': 132, 'tp': 124}"
+Random Forest,0.6677,0.6462,0.3281,0.4352,0.6622,"{'tn': 354, 'fp': 46, 'fn': 172, 'tp': 84}"
+Decision Tree,0.6448,0.5935,0.2852,0.3852,0.6099,"{'tn': 350, 'fp': 50, 'fn': 183, 'tp': 73}"
+Logistic Regression,0.5244,0.4146,0.5312,0.4658,0.5474,"{'tn': 208, 'fp': 192, 'fn': 120, 'tp': 136}"

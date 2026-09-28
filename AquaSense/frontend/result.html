@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-dim":"#c0ddff","on-surface-variant":"#3f484e","surface-container-lowest":"#ffffff","tertiary-container":"#008751","primary-container":"#087ead","inverse-surface":"#043254","on-background":"#001d34","tertiary-fixed-dim":"#56df95","background":"#f8f9ff","on-primary-fixed-variant":"#004c6b","inverse-on-surface":"#e9f1ff","surface-container-low":"#eef4ff","on-error-container":"#93000a","surface-bright":"#f8f9ff","error-container":"#ffdad6","surface":"#f8f9ff","on-secondary-fixed-variant":"#004d64","surface-container-high":"#daeaff","on-primary-fixed":"#001e2d","secondary":"#006783","error":"#ba1a1a","secondary-container":"#40ccfd","tertiary-fixed":"#75fcaf","primary-fixed-dim":"#81cfff","on-secondary-container":"#00546c","on-tertiary-fixed-variant":"#00522f","on-primary-container":"#fffeff","surface-container":"#e4efff","surface-variant":"#d0e4ff","inverse-primary":"#81cfff","on-secondary-fixed":"#001f2a","surface-container-highest":"#d0e4ff","outline":"#6f787f","secondary-fixed-dim":"#64d3ff","on-tertiary":"#ffffff","on-secondary":"#ffffff","on-primary":"#ffffff","surface-tint":"#00658c","on-tertiary-container":"#fdfff9","primary":"#00648b","outline-variant":"#bfc8d0","primary-fixed":"#c6e7ff","on-tertiary-fixed":"#002110","secondary-fixed":"#bce9ff","on-error":"#ffffff","tertiary":"#006b3f","on-surface":"#001d34"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-sm":"0.5rem","gutter-mobile":"1rem","space-lg":"1.5rem","margin":"2.5rem","gutter":"1.5rem","space-xl":"2.5rem","space-md":"1rem","space-xs":"0.25rem","margin-mobile":"1.25rem"},"fontFamily":{"display-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-lg":["Inter"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"body-sm":["Inter"],"title-md":["Plus Jakarta Sans"],"label-md":["Inter"],"display-lg":["Plus Jakarta Sans"],"body-md":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"]},"fontSize":{"display-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"600"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-2xl shadow-[0_8px_32px_-4px_rgba(8,126,173,0.08)]">
+    <div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-gutter">
+        <a href="main.html" class="flex items-center gap-space-md hover:opacity-90 transition-opacity">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-secondary-container via-primary to-primary-container flex items-center justify-center shadow-[0_4px_16px_rgba(8,126,173,0.25)] relative">
+                <span class="material-symbols-outlined text-on-primary text-[22px]">water_drop</span>
+                <span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-tertiary-fixed-dim ring-2 ring-surface-container-lowest flex items-center justify-center">
+                    <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                </span>
+            </div>
+            <div>
+                <div class="flex items-center gap-space-xs">
+                    <span class="font-title-md text-title-md text-on-surface font-bold tracking-tight">AquaSense</span>
+                    <span class="font-label-sm text-label-sm uppercase px-space-xs py-0.5 rounded-full bg-surface-container-high text-primary font-semibold">AI</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-secondary font-medium">Safe Water · Healthy Tomorrow</p>
+            </div>
+        </a>
+        <nav class="hidden lg:flex items-center p-1.5 bg-surface-container-low/90 backdrop-blur-xl rounded-full shadow-[0_4px_20px_-2px_rgba(8,126,173,0.06)]">
+            <a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="main.html">Home</a>
+            <a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="predict.html">Predict</a>
+            <a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="analysis.html">Analysis</a>
+            <a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="analysis.html#models-benchmark">Models</a>
+            <a aria-current="page" class="px-space-md py-space-xs rounded-full transition-all bg-primary-fixed text-on-primary-fixed-variant font-title-md shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.8)]" href="result.html">Latest Result</a>
+        </nav>
+        <div class="flex items-center gap-space-sm">
+            <button aria-label="Toggle light mode" id="theme-toggle-btn" class="w-10 h-10 rounded-full bg-surface-container-low/80 hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">light_mode</span>
+            </button>
+            <a href="predict.html" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary text-body-sm font-semibold hover:bg-primary-container transition-all shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                <span>New Test</span>
+            </a>
+            <!-- Mobile Menu Toggle Button -->
+            <button class="lg:hidden w-10 h-10 rounded-full bg-surface-container-low/80 hover:bg-surface-container-high flex items-center justify-center text-on-surface" id="mobile-menu-btn" type="button">
+                <span class="material-symbols-outlined text-[24px]">menu</span>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Dropdown Navigation -->
+    <div class="lg:hidden hidden bg-surface-container-lowest/95 border-t border-surface-container px-margin py-space-md backdrop-blur-xl transition-all" id="mobile-menu">
+        <div class="flex flex-col gap-2">
+            <a href="main.html" class="px-4 py-2.5 rounded-xl hover:bg-surface-container-low text-on-surface font-medium">Home</a>
+            <a href="predict.html" class="px-4 py-2.5 rounded-xl hover:bg-surface-container-low text-on-surface font-medium">Predict</a>
+            <a href="analysis.html" class="px-4 py-2.5 rounded-xl hover:bg-surface-container-low text-on-surface font-medium">Analysis</a>
+            <a href="analysis.html#models-benchmark" class="px-4 py-2.5 rounded-xl hover:bg-surface-container-low text-on-surface font-medium">Models</a>
+            <a href="result.html" class="px-4 py-2.5 rounded-xl bg-primary-fixed text-on-primary-fixed-variant font-semibold">Latest Result</a>
+        </div>
+    </div>
+</header>
+<main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full relative overflow-hidden">
+<!-- Soft aquatic ambient glow background blurs -->
+<div class="absolute top-12 left-1/4 w-96 h-96 rounded-full bg-secondary-container/15 blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-80 right-10 w-[500px] h-[500px] rounded-full bg-tertiary-fixed/20 blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute -bottom-24 left-10 w-80 h-80 rounded-full bg-primary-fixed-dim/25 blur-3xl pointer-events-none -z-10"></div>
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin py-space-lg w-full flex flex-col gap-space-lg">
+<!-- Breadcrumb & Top Indicator -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<a href="main.html" class="hover:text-primary cursor-pointer transition-colors">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a href="predict.html" class="hover:text-primary cursor-pointer transition-colors">Predict</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold" id="run-badge-id">Evaluation Run #8492</span>
+</div>
+<div class="flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container-low/80 backdrop-blur-md shadow-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium" id="run-model-badge">Active Model: XGBoost Classifier · Calibrated ML Inference</span>
+</div>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm uppercase font-semibold">Diagnostic Report</span>
+<span class="text-outline text-label-sm">•</span>
+<span class="font-label-sm text-label-sm text-secondary">Screened Against WHO &amp; EPA Reference Thresholds</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Prediction Result</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Based on the entered water parameters, here is the AI-analyzed potability diagnosis:</p>
+</div>
+<!-- Quick Action Buttons Top Right -->
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest/90 hover:bg-surface-container-high text-on-surface text-body-sm font-title-md flex items-center gap-1.5 transition-all shadow-sm" id="copySummaryBtn" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">share</span>
+<span>Share Result</span>
+</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-lowest/90 hover:bg-surface-container-high text-on-surface text-body-sm font-title-md flex items-center gap-1.5 transition-all shadow-sm" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">print</span>
+<span>Print</span>
+</button>
+</div>
+</div>
+<!-- ML Screening Disclaimer Banner -->
+<div class="p-space-sm px-space-md rounded-2xl bg-surface-container-high/60 border border-primary/20 flex items-center gap-space-sm text-body-sm text-on-surface-variant">
+  <span class="material-symbols-outlined text-[18px] text-primary flex-shrink-0">info</span>
+  <span><strong>Screening Aid:</strong> This ML prediction is a screening aid and should not replace certified laboratory water testing. Reference thresholds reflect WHO &amp; EPA guidelines.</span>
+</div>
+<!-- Main Large Result Card -->
+<div class="relative bg-surface-container-lowest/85 backdrop-blur-2xl rounded-3xl p-space-lg md:p-space-xl shadow-xl shadow-primary-container/10 flex flex-col gap-space-lg overflow-hidden">
+<!-- Water ripple decorative watermark -->
+<div class="absolute -right-16 -top-16 opacity-5 pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[280px]">water_drop</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center relative z-10">
+<!-- Left Result Status Block (Col-span-7) -->
+<div class="lg:col-span-7 flex flex-col sm:flex-row items-start sm:items-center gap-space-lg">
+<!-- Glowing Water Droplet Icon Badge -->
+<div class="relative flex-shrink-0 group">
+<div class="absolute -inset-2 rounded-full bg-gradient-to-tr from-secondary-container via-tertiary-fixed to-primary-container opacity-40 blur-xl group-hover:opacity-70 transition-opacity"></div>
+<div class="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-surface-variant flex items-center justify-center shadow-lg shadow-tertiary/15" id="drop-visual-container">
+<!-- Water drop SVG motif -->
+<svg class="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-md" fill="none" viewbox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="dropGradient" x1="50" x2="50" y1="10" y2="110">
+<stop offset="0%" stop-color="#40CCFD"></stop>
+<stop offset="60%" stop-color="#087EAD"></stop>
+<stop offset="100%" stop-color="#008751"></stop>
+</lineargradient>
+<lineargradient id="checkGlow" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#FFFFFF"></stop>
+<stop offset="100%" stop-color="#E8FFF0"></stop>
+</lineargradient>
+</defs>
+<path d="M50 10 C50 10 16 56 16 80 C16 98.7779 31.2221 114 50 114 C68.7779 114 84 98.7779 84 80 C84 56 50 10 50 10Z" fill="url(#dropGradient)"></path>
+<path d="M38 52 C35 56 32 65 32 72 C32 76 34 80 37 80 C39 80 40 76 40 72 C40 64 42 58 46 54 C48 52 47 50 44 50 C41 50 39 51 38 52Z" fill="#FFFFFF" fill-opacity="0.5"></path>
+<circle cx="50" cy="80" fill="#008751" r="18"></circle>
+<path d="M43 80 L48 85 L58 74" stroke="url(#checkGlow)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"></path>
+</svg>
+</div>
+</div>
+<!-- Prediction Verdict Info -->
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Analysis Verdict</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-0.5" id="quality-score-text">
+<span class="material-symbols-outlined text-[14px]">verified</span> Safe Quality Score: 92/100
+</span>
+</div>
+<div class="mt-1 flex flex-wrap items-baseline gap-space-sm">
+<span class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface font-black tracking-tight leading-none" id="verdict-title">POTABLE</span>
+<div class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-tertiary-container text-on-tertiary font-title-md text-title-md font-semibold shadow-md shadow-tertiary-container/30" id="verdict-badge">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Safe for Drinking</span>
+</div>
+</div>
+<p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant mt-space-sm max-w-md leading-relaxed" id="verdict-description">
+The given water parameters indicate that the sample falls well within permissible toxicological and chemical ranges. Safe for public domestic consumption.
+</p>
+<div class="mt-space-sm flex flex-wrap items-center gap-space-xs text-body-sm text-secondary font-medium" id="verdict-highlights">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary">check</span> No Pathogenic Risk</span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary">check</span> Mineral Balance Optimum</span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary">check</span> Disinfection Safe</span>
+</div>
+</div>
+</div>
+<!-- Right Prediction Probability Charts (Col-span-5) -->
+<div class="lg:col-span-5 bg-surface-container-low/60 backdrop-blur-xl rounded-2xl p-space-md sm:p-space-lg flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">analytics</span>
+<span class="font-title-md text-title-md text-on-surface font-semibold">Prediction Probability</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-medium">Confidence Matrix</span>
+</div>
+<!-- Probability Donut Gauges Row -->
+<div class="grid grid-cols-2 gap-space-md items-center py-space-sm">
+<!-- Donut 1: Potable -->
+<div class="flex flex-col items-center bg-surface-container-lowest/80 rounded-xl p-space-md shadow-sm hover:scale-[1.02] transition-transform">
+<div class="relative w-28 h-28 flex items-center justify-center">
+<!-- SVG Circular Gauge -->
+<svg class="w-28 h-28 transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background Track -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#daeaff" stroke-width="9"></circle>
+<!-- Potable Progress Ring (Circumference ~251.32) -->
+<circle id="potable-circle-progress" class="transition-all duration-1000 ease-out" cx="50" cy="50" fill="transparent" r="40" stroke="#008751" stroke-dasharray="251.32" stroke-dashoffset="55.29" stroke-linecap="round" stroke-width="9"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight" id="potable-pct-text">78<span class="text-body-sm text-tertiary">%</span></span>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Potable</span>
+</div>
+</div>
+<span class="font-title-md text-body-md text-tertiary font-bold mt-2">Potable</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Likelihood</span>
+</div>
+<!-- Donut 2: Not Potable -->
+<div class="flex flex-col items-center bg-surface-container-lowest/80 rounded-xl p-space-md shadow-sm hover:scale-[1.02] transition-transform">
+<div class="relative w-28 h-28 flex items-center justify-center">
+<!-- SVG Circular Gauge -->
+<svg class="w-28 h-28 transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background Track -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#daeaff" stroke-width="9"></circle>
+<!-- Not Potable Progress Ring -->
+<circle id="risk-circle-progress" class="transition-all duration-1000 ease-out" cx="50" cy="50" fill="transparent" r="40" stroke="#ba1a1a" stroke-dasharray="251.32" stroke-dashoffset="196.03" stroke-linecap="round" stroke-width="9"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight" id="risk-pct-text">22<span class="text-body-sm text-error">%</span></span>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Risk</span>
+</div>
+</div>
+<span class="font-title-md text-body-md text-error font-bold mt-2">Not Potable</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Impurity Risk</span>
+</div>
+</div>
+<!-- Micro Probability Progress Bar -->
+<div class="flex flex-col gap-1.5 mt-space-xs pt-space-xs">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant font-semibold">
+<span class="text-tertiary" id="bar-potable-label">Safe Margin (78%)</span>
+<span class="text-error" id="bar-risk-label">Impurity Risk (22%)</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container-highest flex overflow-hidden">
+<div class="h-full bg-tertiary rounded-l-full transition-all duration-500" id="bar-potable-fill" style="width: 78%"></div>
+<div class="h-full bg-error rounded-r-full transition-all duration-500" id="bar-risk-fill" style="width: 22%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Parameter Summary Section -->
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">tune</span>
+<h2 class="font-headline-md text-headline-sm md:text-headline-md text-on-surface font-bold">Parameter Summary</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Input hydro-chemical values submitted for neural evaluation.</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-space-xs rounded-full bg-primary-fixed text-on-primary-fixed-variant hover:bg-surface-container-highest transition-all flex items-center gap-space-xs font-title-md text-title-md shadow-sm font-semibold" id="newPredictionBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+<span>New Prediction</span>
+</button>
+</div>
+</div>
+<!-- 9 Compact Parameter Summary Pill Cards (Responsive Grid) -->
+<div id="parameter-summary-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-space-sm">
+<!-- 1: pH -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+<div class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined text-[20px]">science</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">pH Level</span>
+<span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">7.2</span>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold mt-0.5">Optimal (6.5-8.5)</span>
+</div>
+<!-- 2: Hardness -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+<div class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-secondary mb-2">
+<span class="material-symbols-outlined text-[20px]">hardware</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Hardness</span>
+<span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">180</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">mg/L</span>
+</div>
+<!-- 3: Solids -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+<div class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-primary-container mb-2">
+<span class="material-symbols-outlined text-[20px]">grain</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Solids</span>
+<span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">15000</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">ppm</span>
+</div>
+<!-- 4: Chloramines -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+<div class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary mb-2">
+<span class="material-symbols-outlined text-[20px]">water_drop</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Chloramines</span>
+<span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">7</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">ppm</span>
+</div>
+<!-- 5: Sulfate -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+<div class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-secondary mb-2">
+<span class="material-symbols-outlined text-[20px]">bubble_chart</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Sulfate</span>
+<span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">300</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">mg/L</span>
+</div>
+<!-- 6: Conductivity -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+<div class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Conductivity</span>
+<span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">400</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">μS/cm</span>
+</div>
+<!-- 7: Organic Carbon -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+<div class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary mb-2">
+<span class="material-symbols-outlined text-[20px]">eco</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Org. Carbon</span>
+<span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">10</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">ppm</span>
+</div>
+<!-- 8: Trihalomethanes -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+<div class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-primary-container mb-2">
+<span class="material-symbols-outlined text-[20px]">scatter_plot</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Trihalo.</span>
+<span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">60</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">μg/L</span>
+</div>
+<!-- 9: Turbidity -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+<div class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Turbidity</span>
+<span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">3</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">NTU</span>
+</div>
+</div>
+</div>
+<!-- Comparative Insights & Context Banner -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-stretch">
+<!-- Water Quality Benchmark Box -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-2xl p-space-md shadow-sm flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">health_and_safety</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold">WHO Standard Aligned</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">All 9 chemical indices register inside the World Health Organization drinking guideline envelopes.</p>
+</div>
+</div>
+<!-- Sensor Sample Info -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-2xl p-space-md shadow-sm flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">nest_multi_room</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold">Telemetry Source</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Acquired from Aqueduct Sensor Station #42 (Clear River Reservoir) at 14:32 UTC.</p>
+</div>
+</div>
+<!-- Actionable Recommendation -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-2xl p-space-md shadow-sm flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]" id="rec-card-icon">task_alt</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold" id="rec-card-title">Dispensation Status</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1" id="rec-card-desc">Automatic valve clearance approved. Ready for municipal distribution routing.</p>
+</div>
+</div>
+</div>
+<!-- Bottom Action Ribbon -->
+<div class="bg-surface-container-low/90 backdrop-blur-md rounded-2xl p-space-md sm:p-space-lg shadow-sm flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div>
+<span class="font-title-md text-title-md text-on-surface font-bold block">Evaluation Archive Reference</span>
+<span class="font-body-sm text-body-sm text-secondary font-mono" id="archive-hash-text">HASH: 9a7b8e-potable-xgboost-0925</span>
+</div>
+</div>
+<!-- Dual Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial px-space-lg py-2.5 rounded-full bg-surface-container-lowest text-on-surface hover:bg-surface-container-high text-body-md font-title-md font-semibold flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-102" id="downloadPdfBtn" type="button">
+<span class="material-symbols-outlined text-primary text-[20px]">download</span>
+<span>Download Report PDF</span>
+</button>
+<button class="flex-1 sm:flex-initial px-space-lg py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-primary text-body-md font-title-md font-semibold flex items-center justify-center gap-2 shadow-md shadow-primary-container/25 transition-all hover:scale-102" id="sensitivityBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">insights</span>
+<span>Run Sensitivity Analysis</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script src="app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Theme toggle & mobile menu setup from app.js
+    if (typeof setupThemeToggle === 'function') setupThemeToggle();
+
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Hydrate prediction results
+    hydrateResultPage();
+
+    // Button event listeners
+    document.getElementById('newPredictionBtn')?.addEventListener('click', () => {
+      window.location.href = 'predict.html';
+    });
+
+    document.getElementById('downloadPdfBtn')?.addEventListener('click', () => {
+      const btn = document.getElementById('downloadPdfBtn');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span><span>Preparing Report...</span>';
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        window.print();
+      }, 600);
+    });
+
+    document.getElementById('sensitivityBtn')?.addEventListener('click', () => {
+      window.location.href = 'analysis.html#models-benchmark';
+    });
+
+    document.getElementById('copySummaryBtn')?.addEventListener('click', () => {
+      const stored = localStorage.getItem('aquasense_prediction');
+      let text = 'AquaSense Water Quality Diagnostic Report';
+      if (stored) {
+        try {
+          const data = JSON.parse(stored);
+          text = `AquaSense Diagnostic: ${data.isPotable ? 'POTABLE (Safe)' : 'NOT POTABLE (Action Required)'} | Confidence: ${data.confidence}% | Quality Score: ${data.score}/100. Key violations: ${data.violations?.length ? data.violations.join(', ') : 'None'}.`;
+        } catch(e) {}
+      }
+      navigator.clipboard?.writeText(text).then(() => {
+        if (typeof showToast === 'function') {
+          showToast('Summary copied to clipboard!', 'success');
+        } else {
+          alert('Copied to clipboard!');
+        }
+      });
+    });
+  });
+
+  async function hydrateResultPage() {
+    let prediction = null;
+
+    // 1. Check URL query parameters first (e.g. from predict.html report link)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('ph') || urlParams.has('solids') || urlParams.has('turbidity')) {
+      const queryInputs = {
+        ph: parseFloat(urlParams.get('ph')) || 7.0,
+        hardness: parseFloat(urlParams.get('hardness')) || 180,
+        solids: parseFloat(urlParams.get('solids')) || 15000,
+        chloramines: parseFloat(urlParams.get('chloramines')) || 7.0,
+        sulfate: parseFloat(urlParams.get('sulfate')) || 300,
+        conductivity: parseFloat(urlParams.get('conductivity')) || 400,
+        organic: parseFloat(urlParams.get('organic') || urlParams.get('carbon')) || 10.0,
+        trihalo: parseFloat(urlParams.get('trihalo') || urlParams.get('thm')) || 60.0,
+        turbidity: parseFloat(urlParams.get('turbidity')) || 3.0
+      };
+      const queryModel = urlParams.get('model') || 'xgboost';
+
+      try {
+        if (typeof predictWaterQualityLive === 'function') {
+          prediction = await predictWaterQualityLive(queryInputs, queryModel);
+        } else if (typeof evaluateWaterQuality === 'function') {
+          prediction = evaluateWaterQuality(queryInputs, queryModel, true);
+        }
+      } catch (err) {
+        console.warn('Live API evaluation error, evaluating client-side:', err);
+        if (typeof evaluateWaterQuality === 'function') {
+          prediction = evaluateWaterQuality(queryInputs, queryModel, true);
+        }
+      }
+    }
+
+    // 2. Check SessionStorage or LocalStorage if not already loaded from query params
+    if (!prediction) {
+      const stored = sessionStorage.getItem('aquasense_prediction') || localStorage.getItem('aquasense_prediction');
+      if (stored) {
+        try {
+          prediction = JSON.parse(stored);
+        } catch (e) {
+          console.error('Error parsing prediction from storage', e);
+        }
+      }
+    }
+
+    // 3. Fallback default if accessed directly with no data in storage or URL
+    if (!prediction || (!prediction.inputs && !prediction.params)) {
+      const defaultInputs = {
+        ph: 7.25,
+        hardness: 185,
+        solids: 14200,
+        chloramines: 6.8,
+        sulfate: 310,
+        conductivity: 420,
+        organic: 9.8,
+        trihalo: 58.0,
+        turbidity: 2.85
+      };
+      try {
+        if (typeof predictWaterQualityLive === 'function') {
+          prediction = await predictWaterQualityLive(defaultInputs, 'xgboost');
+        } else if (typeof evaluateWaterQuality === 'function') {
+          prediction = evaluateWaterQuality(defaultInputs, 'xgboost', true);
+        }
+      } catch(e) {
+        if (typeof evaluateWaterQuality === 'function') {
+          prediction = evaluateWaterQuality(defaultInputs, 'xgboost', true);
+        }
+      }
+    }
+
+    if (!prediction) return;
+
+    const violations = prediction.violations || prediction.flags || [];
+
+    // 1. Header & Run Information
+    const hashId = prediction.runId || prediction.id || 'RUN-8492';
+    const runEl = document.getElementById('run-badge-id');
+    if (runEl) runEl.textContent = `Evaluation ${hashId}`;
+
+    const modelBadge = document.getElementById('run-model-badge');
+    if (modelBadge) {
+      const name = prediction.modelName || prediction.model_name || 'XGBoost (Champion · Best F1)';
+      const conf = prediction.confidence !== undefined ? prediction.confidence : 75;
+      modelBadge.textContent = `Active Model: ${name} · Confidence ${conf}%`;
+    }
+
+    // 2. Verdict & Scores
+    const verdictTitle = document.getElementById('verdict-title');
+    const verdictBadge = document.getElementById('verdict-badge');
+    const qualityScoreEl = document.getElementById('quality-score-text');
+    const verdictDesc = document.getElementById('verdict-description');
+    const dropContainer = document.getElementById('drop-visual-container');
+
+    if (verdictTitle) {
+      verdictTitle.textContent = prediction.isPotable ? 'POTABLE' : 'NOT POTABLE';
+      verdictTitle.className = prediction.isPotable
+        ? 'font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface font-black tracking-tight leading-none'
+        : 'font-display-lg text-display-lg-mobile md:text-display-lg text-error font-black tracking-tight leading-none';
+    }
+
+    if (verdictBadge) {
+      if (prediction.isPotable) {
+        verdictBadge.className = 'inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-tertiary-container text-on-tertiary font-title-md text-title-md font-semibold shadow-md shadow-tertiary-container/30';
+        verdictBadge.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>Safe for Drinking</span>';
+      } else {
+        verdictBadge.className = 'inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-error-container text-on-error font-title-md text-title-md font-semibold shadow-md shadow-error/30';
+        verdictBadge.innerHTML = '<span class="material-symbols-outlined text-[18px]">warning</span><span>Requires Treatment</span>';
+      }
+    }
+
+    if (qualityScoreEl) {
+      const score = prediction.score ?? (prediction.diagnostic ? prediction.diagnostic.score : 80);
+      qualityScoreEl.innerHTML = `<span class="material-symbols-outlined text-[14px]">${prediction.isPotable ? 'verified' : 'crisis_alert'}</span> Safe Quality Score: ${score}/100`;
+      qualityScoreEl.className = `font-label-sm text-label-sm ${prediction.isPotable ? 'text-tertiary' : 'text-error'} font-semibold flex items-center gap-0.5`;
+    }
+
+    if (verdictDesc) {
+      if (prediction.isPotable) {
+        verdictDesc.textContent = 'The entered water parameters indicate that the sample falls comfortably within standard toxicological and chemical ranges. Safe for public domestic consumption.';
+      } else {
+        const violationsStr = violations.length ? violations.join(', ') : 'Critical chemical thresholds exceeded';
+        verdictDesc.textContent = `Sample exhibits risk parameters (${violationsStr}). Water is NOT safe for direct drinking without corrective purification.`;
+      }
+    }
+
+    // Droplet Graphic Color Shift
+    if (dropContainer) {
+      if (prediction.isPotable) {
+        dropContainer.innerHTML = `
+          <svg class="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-md" fill="none" viewBox="0 0 100 120">
+            <defs>
+              <linearGradient id="dropGradient" x1="50" x2="50" y1="10" y2="110" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#40CCFD"></stop>
+                <stop offset="60%" stop-color="#087EAD"></stop>
+                <stop offset="100%" stop-color="#008751"></stop>
+              </linearGradient>
+            </defs>
+            <path d="M50 10 C50 10 16 56 16 80 C16 98.7779 31.2221 114 50 114 C68.7779 114 84 98.7779 84 80 C84 56 50 10 50 10Z" fill="url(#dropGradient)"></path>
+            <path d="M38 52 C35 56 32 65 32 72 C32 76 34 80 37 80 C39 80 40 76 40 72 C40 64 42 58 46 54 C48 52 47 50 44 50 C41 50 39 51 38 52Z" fill="#FFFFFF" fill-opacity="0.5"></path>
+            <circle cx="50" cy="80" fill="#008751" r="18"></circle>
+            <path d="M43 80 L48 85 L58 74" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"></path>
+          </svg>`;
+      } else {
+        dropContainer.innerHTML = `
+          <svg class="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-md" fill="none" viewBox="0 0 100 120">
+            <defs>
+              <linearGradient id="dropGradientWarn" x1="50" x2="50" y1="10" y2="110" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#ff9900"></stop>
+                <stop offset="60%" stop-color="#ea580c"></stop>
+                <stop offset="100%" stop-color="#ba1a1a"></stop>
+              </linearGradient>
+            </defs>
+            <path d="M50 10 C50 10 16 56 16 80 C16 98.7779 31.2221 114 50 114 C68.7779 114 84 98.7779 84 80 C84 56 50 10 50 10Z" fill="url(#dropGradientWarn)"></path>
+            <path d="M38 52 C35 56 32 65 32 72 C32 76 34 80 37 80 C39 80 40 76 40 72 C40 64 42 58 46 54 C48 52 47 50 44 50 C41 50 39 51 38 52Z" fill="#FFFFFF" fill-opacity="0.5"></path>
+            <circle cx="50" cy="80" fill="#ba1a1a" r="18"></circle>
+            <path d="M50 71 L50 82 M50 87 L50 88.5" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"></path>
+          </svg>`;
+      }
+    }
+
+    // Highlights list
+    const highlightsContainer = document.getElementById('verdict-highlights');
+    if (highlightsContainer) {
+      if (prediction.isPotable) {
+        highlightsContainer.innerHTML = `
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary">check</span> No Pathogenic Risk</span>
+          <span class="text-outline-variant">•</span>
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary">check</span> Mineral Balance Optimum</span>
+          <span class="text-outline-variant">•</span>
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary">check</span> Disinfection Safe</span>
+        `;
+      } else {
+        const issues = violations.length ? violations : ['High Turbidity / Organic Contaminants', 'Disinfectant / Mineral Imbalance'];
+        highlightsContainer.innerHTML = issues.map(iss => `<span class="flex items-center gap-1 text-error"><span class="material-symbols-outlined text-[16px]">priority_high</span> ${iss}</span>`).join('<span class="text-outline-variant">•</span>');
+      }
+    }
+
+    // 3. Dynamic Prediction Probability Gauges & Text
+    let potablePct = 50;
+    let riskPct = 50;
+
+    if (prediction.diagnostic && prediction.diagnostic.probabilities) {
+      potablePct = prediction.diagnostic.probabilities.potable;
+      riskPct = prediction.diagnostic.probabilities.non_potable;
+    } else if (prediction.probabilities && typeof prediction.probabilities.potable === 'number') {
+      potablePct = prediction.probabilities.potable;
+      riskPct = prediction.probabilities.non_potable !== undefined 
+        ? prediction.probabilities.non_potable 
+        : Math.round(100 - potablePct);
+    } else if (prediction.potablePct !== undefined) {
+      potablePct = prediction.potablePct;
+      riskPct = prediction.riskPct !== undefined ? prediction.riskPct : Math.round(100 - potablePct);
+    } else {
+      potablePct = prediction.isPotable ? (prediction.confidence || 75) : (100 - (prediction.confidence || 75));
+      riskPct = 100 - potablePct;
+    }
+
+    const potPctText = document.getElementById('potable-pct-text');
+    const riskPctText = document.getElementById('risk-pct-text');
+    const potCircle = document.getElementById('potable-circle-progress');
+    const riskCircle = document.getElementById('risk-circle-progress');
+    const barPot = document.getElementById('bar-potable-fill');
+    const barRisk = document.getElementById('bar-risk-fill');
+    const barPotLbl = document.getElementById('bar-potable-label');
+    const barRiskLbl = document.getElementById('bar-risk-label');
+
+    const circumference = 251.32;
+    if (potPctText) potPctText.innerHTML = `${potablePct}<span class="text-body-sm text-tertiary">%</span>`;
+    if (riskPctText) riskPctText.innerHTML = `${riskPct}<span class="text-body-sm text-error">%</span>`;
+
+    if (potCircle) {
+      const potOffset = circumference - (circumference * (potablePct / 100));
+      potCircle.setAttribute('stroke-dashoffset', potOffset);
+    }
+    if (riskCircle) {
+      const riskOffset = circumference - (circumference * (riskPct / 100));
+      riskCircle.setAttribute('stroke-dashoffset', riskOffset);
+    }
+
+    if (barPot) barPot.style.width = `${potablePct}%`;
+    if (barRisk) barRisk.style.width = `${riskPct}%`;
+    if (barPotLbl) barPotLbl.textContent = `Safe Margin (${potablePct}%)`;
+    if (barRiskLbl) barRiskLbl.textContent = `Impurity Risk (${riskPct}%)`;
+
+    // 4. Parameter Summary Grid - Dynamically Render Exact Submitted Inputs
+    const paramsContainer = document.getElementById('parameter-summary-grid');
+    if (paramsContainer) {
+      const inp = prediction.params || prediction.inputs || {};
+      const phVal = Number(inp.ph ?? inp.pH ?? 7.0);
+      const hardnessVal = Number(inp.hardness ?? inp.Hardness ?? 180);
+      const solidsVal = Number(inp.solids ?? inp.Solids ?? 15000);
+      const chlorVal = Number(inp.chloramines ?? inp.Chloramines ?? 7.0);
+      const sulfVal = Number(inp.sulfate ?? inp.Sulfate ?? 300);
+      const condVal = Number(inp.conductivity ?? inp.Conductivity ?? 400);
+      const orgVal = Number(inp.organic ?? inp.carbon ?? inp.Organic_carbon ?? 10.0);
+      const thmVal = Number(inp.trihalo ?? inp.thm ?? inp.Trihalomethanes ?? 60.0);
+      const turbVal = Number(inp.turbidity ?? inp.Turbidity ?? 3.0);
+
+      const paramCards = [
+        {
+          name: 'pH Level',
+          value: Number.isInteger(phVal) ? phVal.toString() : phVal.toFixed(2),
+          statusText: (phVal >= 6.5 && phVal <= 8.5) ? 'Optimal (6.5-8.5)' : (phVal < 6.5 ? 'Acidic (< 6.5)' : 'Alkaline (> 8.5)'),
+          isOk: phVal >= 6.5 && phVal <= 8.5,
+          icon: 'science',
+          iconColor: 'text-primary'
+        },
+        {
+          name: 'Hardness',
+          value: Math.round(hardnessVal).toLocaleString(),
+          statusText: hardnessVal <= 300 ? 'mg/L' : 'High (> 300 mg/L)',
+          isOk: hardnessVal <= 300,
+          icon: 'hardware',
+          iconColor: 'text-secondary'
+        },
+        {
+          name: 'Solids',
+          value: Math.round(solidsVal).toLocaleString(),
+          statusText: solidsVal <= 20000 ? 'ppm' : 'High TDS (> 20k)',
+          isOk: solidsVal <= 20000,
+          icon: 'grain',
+          iconColor: 'text-primary-container'
+        },
+        {
+          name: 'Chloramines',
+          value: Number.isInteger(chlorVal) ? chlorVal.toString() : chlorVal.toFixed(2),
+          statusText: chlorVal <= 8.0 ? 'ppm' : 'High (> 8.0 ppm)',
+          isOk: chlorVal <= 8.0,
+          icon: 'water_drop',
+          iconColor: 'text-tertiary'
+        },
+        {
+          name: 'Sulfate',
+          value: Math.round(sulfVal).toLocaleString(),
+          statusText: sulfVal <= 400 ? 'mg/L' : 'High (> 400 mg/L)',
+          isOk: sulfVal <= 400,
+          icon: 'bubble_chart',
+          iconColor: 'text-secondary'
+        },
+        {
+          name: 'Conductivity',
+          value: Math.round(condVal).toLocaleString(),
+          statusText: condVal <= 600 ? 'μS/cm' : 'High (> 600 μS/cm)',
+          isOk: condVal <= 600,
+          icon: 'bolt',
+          iconColor: 'text-primary'
+        },
+        {
+          name: 'Org. Carbon',
+          value: Number.isInteger(orgVal) ? orgVal.toString() : orgVal.toFixed(2),
+          statusText: orgVal <= 18.0 ? 'ppm' : 'High TOC (> 18 ppm)',
+          isOk: orgVal <= 18.0,
+          icon: 'eco',
+          iconColor: 'text-tertiary'
+        },
+        {
+          name: 'Trihalo.',
+          value: Math.round(thmVal).toLocaleString(),
+          statusText: thmVal <= 80.0 ? 'μg/L' : 'Exceeds EPA (> 80)',
+          isOk: thmVal <= 80.0,
+          icon: 'scatter_plot',
+          iconColor: 'text-primary-container'
+        },
+        {
+          name: 'Turbidity',
+          value: Number.isInteger(turbVal) ? turbVal.toString() : turbVal.toFixed(2),
+          statusText: turbVal <= 5.0 ? 'NTU' : 'Turbid (> 5.0 NTU)',
+          isOk: turbVal <= 5.0,
+          icon: 'visibility',
+          iconColor: 'text-primary'
+        }
+      ];
+
+      paramsContainer.innerHTML = '';
+      paramCards.forEach(c => {
+        const card = document.createElement('div');
+        card.className = `bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-space-md flex flex-col items-center text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all border ${c.isOk ? 'border-transparent' : 'border-error/30'}`;
+        card.innerHTML = `
+          <div class="w-9 h-9 rounded-full ${c.isOk ? 'bg-surface-container-low ' + c.iconColor : 'bg-error-container text-error'} flex items-center justify-center mb-2">
+            <span class="material-symbols-outlined text-[20px]">${c.icon}</span>
+          </div>
+          <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">${c.name}</span>
+          <span class="font-title-md text-headline-sm text-on-surface font-bold tracking-tight mt-1">${c.value}</span>
+          <span class="font-label-sm text-label-sm ${c.isOk ? 'text-tertiary' : 'text-error'} font-semibold mt-0.5">${c.statusText}</span>
+        `;
+        paramsContainer.appendChild(card);
+      });
+    }
+
+    // 5. Recommendations and Telemetry Info
+    const recCardTitle = document.getElementById('rec-card-title');
+    const recCardDesc = document.getElementById('rec-card-desc');
+    const recCardIcon = document.getElementById('rec-card-icon');
+    if (recCardTitle && recCardDesc) {
+      if (prediction.recommendations && prediction.recommendations.length > 0) {
+        const topRec = prediction.recommendations[0];
+        if (typeof topRec === 'object') {
+          recCardTitle.textContent = topRec.title;
+          recCardDesc.textContent = topRec.desc;
+          if (recCardIcon && topRec.icon) recCardIcon.textContent = topRec.icon;
+        } else {
+          recCardTitle.textContent = prediction.isPotable ? 'Dispensation Status' : 'Remediation Action';
+          recCardDesc.textContent = topRec;
+          if (recCardIcon) recCardIcon.textContent = prediction.isPotable ? 'task_alt' : 'warning';
+        }
+      } else {
+        if (prediction.isPotable) {
+          recCardTitle.textContent = 'Dispensation Status';
+          recCardDesc.textContent = 'Automatic valve clearance approved. Ready for municipal or residential drinking distribution.';
+          if (recCardIcon) recCardIcon.textContent = 'task_alt';
+        } else {
+          recCardTitle.textContent = 'Corrective Remediation';
+          recCardDesc.textContent = 'Multi-stage filtration and aeration treatment recommended before use.';
+          if (recCardIcon) recCardIcon.textContent = 'warning';
+        }
+      }
+    }
+
+    const archiveHash = document.getElementById('archive-hash-text');
+    if (archiveHash) {
+      archiveHash.textContent = `HASH: ${prediction.runId || prediction.id || '9a7b8e-potable-xgboost'}`;
+    }
+  }
+</script>
+</main><footer class="w-full bg-surface-container-low/70 backdrop-blur-md"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center pb-space-lg"><div class="md:col-span-6 flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs"><div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[16px]">water_drop</span></div><span class="font-headline-sm text-headline-sm text-on-surface">AquaSense</span></div><p class="font-body-md text-body-md text-secondary">Every Drop Counts · Keep Our Water Safe</p></div><div class="md:col-span-6 flex flex-wrap md:justify-end items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-lowest shadow-[0_4px_16px_rgba(8,126,173,0.06)]"><span class="material-symbols-outlined text-tertiary text-[18px]">eco</span><span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Real-time Telemetry Active</span></div><div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-lowest shadow-[0_4px_16px_rgba(8,126,173,0.06)]"><span class="material-symbols-outlined text-primary text-[18px]">neurology</span><span class="font-body-sm text-body-sm text-on-surface-variant font-medium">ML Screening Pipeline · Calibrated</span></div></div></div><div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2026 AquaSense Inc. Algorithmic Environmental Protection.</p><div class="flex items-center gap-space-md font-body-sm text-body-sm text-secondary"><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a><a class="hover:text-primary transition-colors" href="#">Sensor Network</a><a class="hover:text-primary transition-colors" href="#">Reference Guidelines</a></div></div></div></footer></body></html>

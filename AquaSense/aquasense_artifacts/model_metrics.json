@@ -1,0 +1,58 @@
+[
+    {
+        "Model": "XGBoost",
+        "Accuracy": 0.625,
+        "Precision": 0.521,
+        "Recall": 0.4844,
+        "F1-Score": 0.502,
+        "ROC-AUC": 0.6437,
+        "ConfusionMatrix": {
+            "tn": 286,
+            "fp": 114,
+            "fn": 132,
+            "tp": 124
+        }
+    },
+    {
+        "Model": "Random Forest",
+        "Accuracy": 0.6677,
+        "Precision": 0.6462,
+        "Recall": 0.3281,
+        "F1-Score": 0.4352,
+        "ROC-AUC": 0.6622,
+        "ConfusionMatrix": {
+            "tn": 354,
+            "fp": 46,
+            "fn": 172,
+            "tp": 84
+        }
+    },
+    {
+        "Model": "Decision Tree",
+        "Accuracy": 0.6448,
+        "Precision": 0.5935,
+        "Recall": 0.2852,
+        "F1-Score": 0.3852,
+        "ROC-AUC": 0.6099,
+        "ConfusionMatrix": {
+            "tn": 350,
+            "fp": 50,
+            "fn": 183,
+            "tp": 73
+        }
+    },
+    {
+        "Model": "Logistic Regression",
+        "Accuracy": 0.5244,
+        "Precision": 0.4146,
+        "Recall": 0.5312,
+        "F1-Score": 0.4658,
+        "ROC-AUC": 0.5474,
+        "ConfusionMatrix": {
+            "tn": 208,
+            "fp": 192,
+            "fn": 120,
+            "tp": 136
+        }
+    }
+]
