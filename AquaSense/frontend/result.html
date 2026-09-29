@@ -519,9 +519,10 @@ The given water parameters indicate that the sample falls well within permissibl
 
     const modelBadge = document.getElementById('run-model-badge');
     if (modelBadge) {
-      const name = prediction.modelName || prediction.model_name || 'XGBoost (Champion · Best F1)';
+      const name = prediction.modelName || prediction.model_name || 'the trained model';
       const conf = prediction.confidence !== undefined ? prediction.confidence : 75;
-      modelBadge.textContent = `Active Model: ${name} · Confidence ${conf}%`;
+      const prefix = prediction.isLiveBackend === false ? 'Offline Estimate' : 'Active Model';
+      modelBadge.textContent = `${prefix}: ${name} · Confidence ${conf}%`;
     }
 
     // 2. Verdict & Scores
@@ -555,7 +556,12 @@ The given water parameters indicate that the sample falls well within permissibl
     }
 
     if (verdictDesc) {
-      if (prediction.isPotable) {
+      if (prediction.verdictReason) {
+        // The model's own prediction and the WHO/EPA guideline check, and
+        // whether they agree - computed by the backend, previously dropped
+        // before it ever reached this page.
+        verdictDesc.textContent = prediction.verdictReason;
+      } else if (prediction.isPotable) {
         verdictDesc.textContent = 'The entered water parameters indicate that the sample falls comfortably within standard toxicological and chemical ranges. Safe for public domestic consumption.';
       } else {
         const violationsStr = violations.length ? violations.join(', ') : 'Critical chemical thresholds exceeded';

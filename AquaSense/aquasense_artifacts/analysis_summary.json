@@ -131,6 +131,10 @@
             "skew": -0.01
         }
     },
-    "class_imbalance_ratio": 1.5636,
-    "best_model": "XGBoost"
+    "best_model": "Random Forest",
+    "best_model_test_accuracy": 0.5762,
+    "best_model_test_roc_auc": 0.6595,
+    "baseline_accuracy": 0.6098,
+    "baseline_roc_auc": 0.5,
+    "note": "The majority-class baseline scores 61.0% accuracy without learning anything, since 60.99% of samples are Non-Potable - so accuracy is not a trustworthy comparison metric here (the champion model can, and often does, score *lower* raw accuracy than this baseline once its threshold is tuned to actually predict both classes instead of only the majority one). ROC-AUC, which does not depend on a threshold, is the fair comparison: baseline 0.500 vs. champion 0.659. Every feature also correlates with Potability at |r| < 0.05 (see correlation_matrix.csv), so a large gap over that baseline should not be expected from this dataset alone regardless of metric."
 }

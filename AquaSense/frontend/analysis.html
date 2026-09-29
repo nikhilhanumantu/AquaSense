@@ -743,22 +743,19 @@
 
         <!-- 4 Model Summary Cards: XGBoost, Random Forest, Decision Tree, Logistic Regression -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
-          <!-- Card 1: XGBoost (Active Production Champion) -->
-          <div
-            class="rounded-2xl p-space-md bg-gradient-to-b from-surface-container-lowest via-surface-container-low to-surface-container/60 border-2 border-primary/40 shadow-md relative overflow-hidden flex flex-col justify-between">
-            <div class="absolute top-3 right-3">
-              <span
-                class="px-2 py-0.5 rounded-full bg-primary text-on-primary text-[11px] font-bold tracking-wide uppercase">Active
-                Model</span>
-            </div>
+          <!-- Card 1: XGBoost. Champion badge/border are applied dynamically
+               by JS below, from the real trained champion in model_card.json
+               (via /api/metadata) - not assumed to always be this card. -->
+          <div id="card-xgb-container"
+            class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm relative overflow-hidden flex flex-col justify-between">
+            <div class="absolute top-3 right-3" id="card-xgb-badge"></div>
             <div>
               <div
-                class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center mb-3 shadow-md shadow-primary/20">
+                class="w-10 h-10 rounded-xl bg-surface-container-high text-secondary flex items-center justify-center mb-3">
                 <span class="material-symbols-outlined text-[22px]">neurology</span>
               </div>
               <h3 class="font-title-md text-headline-sm text-on-surface font-bold">XGBoost</h3>
-              <span class="font-body-sm text-body-sm text-primary font-medium">Champion Architecture (Thresh:
-                0.50)</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Gradient Boosted Trees</span>
               <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-surface-container-high">
                 <div>
                   <span class="text-[11px] text-on-surface-variant block">Accuracy</span>
@@ -778,13 +775,14 @@
                 </div>
               </div>
             </div>
-            <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-lowest/80 p-2 rounded-lg">Best
-              overall composite champion; top F1-score (0.5020) and highest potable recall among tree architectures.</p>
+            <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-lowest/80 p-2 rounded-lg" id="card-xgb-note">Gradient-boosted
+              trees, tuned via cross-validated hyperparameter search.</p>
           </div>
 
           <!-- Card 2: Random Forest -->
-          <div
-            class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm flex flex-col justify-between">
+          <div id="card-rf-container"
+            class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm relative overflow-hidden flex flex-col justify-between">
+            <div class="absolute top-3 right-3" id="card-rf-badge"></div>
             <div>
               <div
                 class="w-10 h-10 rounded-xl bg-surface-container-high text-secondary flex items-center justify-center mb-3">
@@ -812,13 +810,14 @@
                 </div>
               </div>
             </div>
-            <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-low/60 p-2 rounded-lg">High overall
-              accuracy (66.77%) and precision (64.62%) with randomized multi-tree bootstrapping.</p>
+            <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-low/60 p-2 rounded-lg" id="card-rf-note">Bagged
+              ensemble of decision trees, randomized multi-tree bootstrapping.</p>
           </div>
 
           <!-- Card 3: Decision Tree -->
-          <div
-            class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm flex flex-col justify-between">
+          <div id="card-dt-container"
+            class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm relative overflow-hidden flex flex-col justify-between">
+            <div class="absolute top-3 right-3" id="card-dt-badge"></div>
             <div>
               <div
                 class="w-10 h-10 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center mb-3">
@@ -846,13 +845,14 @@
                 </div>
               </div>
             </div>
-            <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-low/60 p-2 rounded-lg">Explicit rule
-              partitioning; interpretable chemical decision boundaries across pH and sulfate.</p>
+            <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-low/60 p-2 rounded-lg" id="card-dt-note">Explicit
+              rule partitioning; interpretable chemical decision boundaries across pH and sulfate.</p>
           </div>
 
           <!-- Card 4: Logistic Regression -->
-          <div
-            class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm flex flex-col justify-between">
+          <div id="card-lr-container"
+            class="rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm relative overflow-hidden flex flex-col justify-between">
+            <div class="absolute top-3 right-3" id="card-lr-badge"></div>
             <div>
               <div
                 class="w-10 h-10 rounded-xl bg-surface-container-high text-secondary flex items-center justify-center mb-3">
@@ -879,7 +879,7 @@
                 </div>
               </div>
             </div>
-            <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-low/60 p-2 rounded-lg">Linear
+            <p class="text-[12px] text-on-surface-variant mt-3 bg-surface-container-low/60 p-2 rounded-lg" id="card-lr-note">Linear
               hyper-plane with standard scaling and balanced weighting; baseline reference model.</p>
           </div>
         </div>
@@ -891,44 +891,44 @@
             class="rounded-2xl p-space-md bg-surface-container-lowest/90 border border-surface-container-high shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between mb-2">
-                <h3 class="font-title-md text-on-surface font-bold">Holdout Confusion Matrix (XGBoost · Active Model)
+                <h3 class="font-title-md text-on-surface font-bold">Holdout Confusion Matrix (<span id="cm-model-name">XGBoost</span> · Active Model)
                 </h3>
                 <span
                   class="text-[11px] px-2 py-0.5 rounded-full bg-surface-container-high font-semibold text-primary">Test
-                  N = 656</span>
+                  N = <span id="cm-test-n">656</span></span>
               </div>
               <p class="text-body-sm text-on-surface-variant mb-4">Evaluated on untouched 20% holdout test set at
-                standard threshold 0.50.</p>
+                the champion's own tuned threshold (<span id="cm-threshold">0.50</span>).</p>
 
               <div class="grid grid-cols-2 gap-3 text-center">
                 <div class="p-3 rounded-xl bg-surface-container-low border border-surface-container-high">
                   <span class="text-[11px] text-on-surface-variant block font-medium">True Negatives (TN)</span>
-                  <span class="text-headline-md font-extrabold text-primary">286</span>
-                  <span class="text-[10px] text-secondary block mt-0.5">Correct Non-Potable (71.5%)</span>
+                  <span class="text-headline-md font-extrabold text-primary" id="cm-tn">286</span>
+                  <span class="text-[10px] text-secondary block mt-0.5">Correct Non-Potable (<span id="cm-tn-pct">71.5</span>%)</span>
                 </div>
                 <div class="p-3 rounded-xl bg-error-container/20 border border-error/20">
                   <span class="text-[11px] text-error block font-medium">False Positives (FP)</span>
-                  <span class="text-headline-md font-extrabold text-error">114</span>
+                  <span class="text-headline-md font-extrabold text-error" id="cm-fp">114</span>
                   <span class="text-[10px] text-error block mt-0.5">False Potable Flags</span>
                 </div>
                 <div class="p-3 rounded-xl bg-error-container/20 border border-error/20">
                   <span class="text-[11px] text-error block font-medium">False Negatives (FN)</span>
-                  <span class="text-headline-md font-extrabold text-error">132</span>
-                  <span class="text-[10px] text-error block mt-0.5">Conservative Guard</span>
+                  <span class="text-headline-md font-extrabold text-error" id="cm-fn">132</span>
+                  <span class="text-[10px] text-error block mt-0.5">Missed Potable</span>
                 </div>
                 <div class="p-3 rounded-xl bg-tertiary-container/10 border border-tertiary/20">
                   <span class="text-[11px] text-tertiary block font-medium">True Positives (TP)</span>
-                  <span class="text-headline-md font-extrabold text-tertiary">124</span>
-                  <span class="text-[10px] text-tertiary block mt-0.5">Detected Potable (48.44%)</span>
+                  <span class="text-headline-md font-extrabold text-tertiary" id="cm-tp">124</span>
+                  <span class="text-[10px] text-tertiary block mt-0.5">Detected Potable (<span id="cm-tp-pct">48.44</span>%)</span>
                 </div>
               </div>
             </div>
             <div
               class="mt-4 pt-3 border-t border-surface-container-high/60 flex items-center justify-between text-[12px] text-on-surface-variant">
-              <span>Test Accuracy: <strong class="text-primary font-bold">62.50%</strong></span>
-              <span>Precision: <strong class="text-on-surface font-bold">52.10%</strong></span>
-              <span>Potable Recall: <strong class="text-tertiary font-bold">48.44%</strong></span>
-              <span>F1-Score: <strong class="text-secondary font-bold">0.5020</strong></span>
+              <span>Test Accuracy: <strong class="text-primary font-bold" id="cm-accuracy">62.50%</strong></span>
+              <span>Precision: <strong class="text-on-surface font-bold" id="cm-precision">52.10%</strong></span>
+              <span>Potable Recall: <strong class="text-tertiary font-bold" id="cm-recall">48.44%</strong></span>
+              <span>F1-Score: <strong class="text-secondary font-bold" id="cm-f1">0.5020</strong></span>
             </div>
           </div>
 
@@ -981,7 +981,8 @@
                 <th class="py-3 px-4">Precision</th>
                 <th class="py-3 px-4">Recall (Potable)</th>
                 <th class="py-3 px-4">F1 Score</th>
-                <th class="py-3 px-4">ROC-AUC</th>
+                <th class="py-3 px-4">Test ROC-AUC</th>
+                <th class="py-3 px-4">CV ROC-AUC (5-fold)</th>
                 <th class="py-3 px-4">Threshold</th>
                 <th class="py-3 px-4 rounded-r-xl text-right">Deployment Status</th>
               </tr>
@@ -1131,7 +1132,11 @@
 
               orderedNames.forEach(name => {
                 const m = meta.candidate_models[name];
-                const isChamp = (name.toLowerCase().includes('xgboost') || name === meta.model_name);
+                // Compare only against the real champion from model_card.json
+                // (via /api/metadata) - previously also matched any row named
+                // "XGBoost" regardless of who the actual champion was, which
+                // could highlight two rows as "Active Model" at once.
+                const isChamp = (name === meta.model_name);
                 const tr = document.createElement('tr');
                 tr.className = isChamp ? 'bg-primary/5 hover:bg-primary/10 transition-colors font-semibold' : 'hover:bg-surface-container-low/40 transition-colors';
                 const dotColor = isChamp ? 'bg-primary' : (name.includes('Random') ? 'bg-secondary' : (name.includes('Decision') ? 'bg-primary-container' : 'bg-error'));
@@ -1149,6 +1154,7 @@
                 <td class="py-3.5 px-4 ${isChamp ? 'text-tertiary font-bold' : ''}">${(m.recall * 100).toFixed(2)}%</td>
                 <td class="py-3.5 px-4 font-bold text-on-surface">${m.f1.toFixed(4)}</td>
                 <td class="py-3.5 px-4 ${isChamp ? 'font-bold text-secondary' : ''}">${m.roc_auc.toFixed(4)}</td>
+                <td class="py-3.5 px-4">${m.cv_roc_auc != null ? m.cv_roc_auc.toFixed(4) + (m.cv_roc_auc_std != null ? ' ± ' + m.cv_roc_auc_std.toFixed(4) : '') : '–'}</td>
                 <td class="py-3.5 px-4">${m.threshold ? m.threshold.toFixed(2) : '0.50'}</td>
                 <td class="py-3.5 px-4 text-right">${statusPill}</td>
               `;
@@ -1203,6 +1209,103 @@
                 if (elF1) elF1.textContent = lr.f1.toFixed(4);
                 if (elAuc) elAuc.textContent = lr.roc_auc.toFixed(4);
               }
+            }
+
+            // Move the "Active Model" badge + highlighted border to whichever
+            // card is the REAL champion (meta.model_name, from
+            // model_card.json) - previously hardcoded to the XGBoost card
+            // regardless of which model training actually selected.
+            const cardKeyMap = { 'XGBoost': 'xgb', 'Random Forest': 'rf', 'Decision Tree': 'dt', 'Logistic Regression': 'lr' };
+            const championKey = cardKeyMap[meta.model_name];
+            Object.values(cardKeyMap).forEach(key => {
+              const container = document.getElementById(`card-${key}-container`);
+              const badge = document.getElementById(`card-${key}-badge`);
+              const note = document.getElementById(`card-${key}-note`);
+              const isThisChampion = key === championKey;
+              if (container) {
+                container.className = isThisChampion
+                  ? 'rounded-2xl p-space-md bg-gradient-to-b from-surface-container-lowest via-surface-container-low to-surface-container/60 border-2 border-primary/40 shadow-md relative overflow-hidden flex flex-col justify-between'
+                  : 'rounded-2xl p-space-md bg-surface-container-lowest/80 border border-surface-container-high shadow-sm relative overflow-hidden flex flex-col justify-between';
+              }
+              if (badge) {
+                badge.innerHTML = isThisChampion
+                  ? '<span class="px-2 py-0.5 rounded-full bg-primary text-on-primary text-[11px] font-bold tracking-wide uppercase">Active Model</span>'
+                  : '';
+              }
+              if (note && isThisChampion) {
+                const stdTxt = meta.cv_roc_auc_std != null ? ` ± ${meta.cv_roc_auc_std.toFixed(4)}` : '';
+                note.textContent = `Champion model - selected by cross-validated ROC-AUC (${meta.cv_roc_auc != null ? meta.cv_roc_auc.toFixed(4) : 'n/a'}${stdTxt}). ${note.textContent}`;
+              }
+              // If this card is the runner-up and the champion's lead over it
+              // is within fold-to-fold noise, say so plainly rather than let
+              // the champion badge alone imply a clean win.
+              if (note && key === cardKeyMap[meta.runner_up_model] && meta.champion_cv_margin_within_noise) {
+                note.textContent = `Statistically tied with the champion on cross-validation (see note on that card) - not a clear runner-up. ${note.textContent}`;
+              }
+            });
+
+            // A visible, detailed panel on how the champion was actually
+            // picked: the real per-fold scores behind both means, whether
+            // the champion's CV lead clears the noise floor, and - since it
+            // happens on this run - that the test set's own ROC-AUC ranking
+            // disagrees with the CV ranking, and why CV is still the right
+            // criterion. The champion badge alone would otherwise imply a
+            // clean, decisive win the numbers don't actually support.
+            const cvCaveatId = 'cv-margin-caveat';
+            let cvCaveat = document.getElementById(cvCaveatId);
+            if (meta.runner_up_model) {
+              if (!cvCaveat) {
+                cvCaveat = document.createElement('div');
+                cvCaveat.id = cvCaveatId;
+                cvCaveat.className = 'mt-space-sm p-space-md rounded-xl bg-surface-container-high/60 border border-surface-container-high text-body-sm text-on-surface-variant space-y-3';
+                const cardsGrid = document.querySelector('#card-xgb-container')?.parentElement;
+                if (cardsGrid) cardsGrid.insertAdjacentElement('afterend', cvCaveat);
+              }
+              if (cvCaveat) {
+                const foldRow = (label, folds) => {
+                  if (!folds) return '';
+                  const cells = folds.map(v => `<span class="font-mono px-1.5 py-0.5 rounded bg-surface-container-lowest">${v.toFixed(4)}</span>`).join(' ');
+                  return `<div><span class="font-semibold text-on-surface">${label}:</span> ${cells}</div>`;
+                };
+                let html = '';
+                if (meta.champion_cv_margin_within_noise) {
+                  html += `<p><strong>Champion selection is a tie-break, not a decisive win.</strong> ` +
+                    `${meta.model_name}'s cross-validated ROC-AUC ` +
+                    `(${meta.cv_roc_auc.toFixed(4)} ± ${meta.cv_roc_auc_std.toFixed(4)}) is within noise of ` +
+                    `${meta.runner_up_model}'s (${meta.runner_up_cv_roc_auc.toFixed(4)} ± ${meta.runner_up_cv_roc_auc_std.toFixed(4)}) - ` +
+                    `these two models are statistically tied.</p>`;
+                }
+                html += `<div class="text-[13px] space-y-1">
+                  ${foldRow(meta.model_name + ' (champion) - 5 folds', meta.cv_roc_auc_folds)}
+                  ${foldRow(meta.runner_up_model + ' (runner-up) - 5 folds', meta.runner_up_cv_roc_auc_folds)}
+                </div>`;
+                if (meta.test_vs_cv_disagreement && meta.test_vs_cv_disagreement_note) {
+                  html += `<p><strong>Why cross-validated score, not the test set's own ROC-AUC, decides the champion:</strong> ${meta.test_vs_cv_disagreement_note}</p>`;
+                }
+                cvCaveat.innerHTML = html;
+              }
+            } else if (cvCaveat) {
+              cvCaveat.remove();
+            }
+
+            // Populate the confusion-matrix subcard for the real champion.
+            const champ = cm[meta.model_name];
+            if (champ && champ.confusion_matrix) {
+              const { tn, fp, fn, tp } = champ.confusion_matrix;
+              const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+              setText('cm-model-name', meta.model_name);
+              setText('cm-test-n', tn + fp + fn + tp);
+              setText('cm-threshold', champ.threshold != null ? champ.threshold.toFixed(3) : '0.50');
+              setText('cm-tn', tn);
+              setText('cm-fp', fp);
+              setText('cm-fn', fn);
+              setText('cm-tp', tp);
+              setText('cm-tn-pct', (tn + fp) > 0 ? (tn / (tn + fp) * 100).toFixed(1) : '0.0');
+              setText('cm-tp-pct', (tp + fn) > 0 ? (tp / (tp + fn) * 100).toFixed(1) : '0.0');
+              setText('cm-accuracy', (champ.accuracy * 100).toFixed(2) + '%');
+              setText('cm-precision', (champ.precision * 100).toFixed(2) + '%');
+              setText('cm-recall', (champ.recall * 100).toFixed(2) + '%');
+              setText('cm-f1', champ.f1.toFixed(4));
             }
           }
         } catch (err) {

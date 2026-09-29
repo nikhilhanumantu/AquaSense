@@ -1,0 +1,58 @@
+{
+    "champion_model": "Random Forest",
+    "champion_key": "random_forest",
+    "champion_threshold": 0.4225,
+    "champion_cv_roc_auc": 0.6977,
+    "champion_cv_roc_auc_std": 0.0112,
+    "champion_cv_roc_auc_folds": [
+        0.6923,
+        0.684,
+        0.6941,
+        0.7174,
+        0.7008
+    ],
+    "runner_up_model": "XGBoost",
+    "runner_up_cv_roc_auc": 0.6858,
+    "runner_up_cv_roc_auc_std": 0.0154,
+    "runner_up_cv_roc_auc_folds": [
+        0.7037,
+        0.6754,
+        0.6841,
+        0.7021,
+        0.6638
+    ],
+    "champion_cv_margin_within_noise": true,
+    "champion_selection_note": "Random Forest's CV ROC-AUC (0.6977) beat XGBoost's (0.6858) by 0.0119 - smaller than at least one of their own fold-to-fold standard deviations, so this is NOT a statistically meaningful win. Treat the two as effectively tied; the champion is a tie-break, not a decisive result.",
+    "test_vs_cv_disagreement": true,
+    "test_vs_cv_disagreement_note": "On the held-out test set, XGBoost scores a higher ROC-AUC (0.6858) than Random Forest (0.6595) - the opposite of the cross-validated ranking used to select the champion (0.6977 vs 0.6858). This is expected, not an error: picking whichever model happens to score best on one fixed 656-sample test set, then reporting that same test score as its performance, is a known bias (the 'winner's curse' / selection bias) - out of several noisy test-set estimates, whichever looks best that day gets picked, so its reported score is systematically optimistic. Cross-validation selects using only the training set, before the test set is touched at all, which is why it is the textbook-correct criterion even when the two disagree like this. The honest conclusion either way: these two models are statistically indistinguishable on this dataset (see champion_cv_margin_within_noise) - the champion is a tie-break, not proof that one architecture is really better than the other here.",
+    "champion_test_metrics": {
+        "accuracy": 0.5762,
+        "precision": 0.4669,
+        "recall": 0.6055,
+        "f1": 0.5272,
+        "roc_auc": 0.6595
+    },
+    "baseline_test_accuracy": 0.6098,
+    "baseline_test_roc_auc": 0.5,
+    "beats_baseline_roc_auc": true,
+    "beats_baseline_accuracy": false,
+    "beats_baseline_note": "Compare on ROC-AUC, not accuracy: the majority-class baseline's accuracy (never predicting the minority class) is not a real classifier and its ROC-AUC is exactly 0.5 by construction. The champion's tuned threshold optimizes F1 (balancing both classes), which can and does reduce raw accuracy relative to always guessing the majority class - that trade-off is expected, not a regression.",
+    "selection_rule": "Highest cross-validated (5-fold stratified) ROC-AUC among the 4 tuned candidates.",
+    "dataset": {
+        "path": "dataset/water_potability.csv",
+        "sha256": "904004bde729bfe3d2e195f46343bceead09e32a0eb95bb8184e7e20e029b2bf",
+        "total_samples": 3276,
+        "test_size": 0.2,
+        "random_state": 42,
+        "cv_folds": 5
+    },
+    "versions": {
+        "python": "3.14.7",
+        "scikit-learn": "1.9.1",
+        "xgboost": "3.4.1",
+        "pandas": "3.0.6",
+        "numpy": "2.5.3"
+    },
+    "trained_at": "2026-09-29T07:31:57.997037+00:00",
+    "notes": "This dataset's provenance is undocumented - the original Kaggle upload does not cite a measurement source, and every feature correlates with Potability at |r| < 0.05. These metrics are the honestly measured ceiling for this data, not a tuning shortfall."
+}

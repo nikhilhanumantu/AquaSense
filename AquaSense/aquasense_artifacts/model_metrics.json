@@ -1,58 +1,116 @@
 [
     {
-        "Model": "XGBoost",
-        "Accuracy": 0.625,
-        "Precision": 0.521,
-        "Recall": 0.4844,
-        "F1-Score": 0.502,
-        "ROC-AUC": 0.6437,
+        "Model": "Majority-Class Baseline",
+        "Accuracy": 0.6098,
+        "Precision": 0.0,
+        "Recall": 0.0,
+        "F1-Score": 0.0,
+        "ROC-AUC": 0.5,
+        "Threshold": 0.5,
+        "CV_ROC_AUC": null,
+        "CV_ROC_AUC_STD": null,
+        "CV_ROC_AUC_FOLDS": null,
         "ConfusionMatrix": {
-            "tn": 286,
-            "fp": 114,
-            "fn": 132,
-            "tp": 124
+            "tn": 400,
+            "fp": 0,
+            "fn": 256,
+            "tp": 0
+        }
+    },
+    {
+        "Model": "XGBoost",
+        "Accuracy": 0.5473,
+        "Precision": 0.4567,
+        "Recall": 0.8438,
+        "F1-Score": 0.5926,
+        "ROC-AUC": 0.6858,
+        "Threshold": 0.4071,
+        "CV_ROC_AUC": 0.6858,
+        "CV_ROC_AUC_STD": 0.0154,
+        "CV_ROC_AUC_FOLDS": [
+            0.7037,
+            0.6754,
+            0.6841,
+            0.7021,
+            0.6638
+        ],
+        "ConfusionMatrix": {
+            "tn": 143,
+            "fp": 257,
+            "fn": 40,
+            "tp": 216
         }
     },
     {
         "Model": "Random Forest",
-        "Accuracy": 0.6677,
-        "Precision": 0.6462,
-        "Recall": 0.3281,
-        "F1-Score": 0.4352,
-        "ROC-AUC": 0.6622,
+        "Accuracy": 0.5762,
+        "Precision": 0.4669,
+        "Recall": 0.6055,
+        "F1-Score": 0.5272,
+        "ROC-AUC": 0.6595,
+        "Threshold": 0.4225,
+        "CV_ROC_AUC": 0.6977,
+        "CV_ROC_AUC_STD": 0.0112,
+        "CV_ROC_AUC_FOLDS": [
+            0.6923,
+            0.684,
+            0.6941,
+            0.7174,
+            0.7008
+        ],
         "ConfusionMatrix": {
-            "tn": 354,
-            "fp": 46,
-            "fn": 172,
-            "tp": 84
+            "tn": 223,
+            "fp": 177,
+            "fn": 101,
+            "tp": 155
         }
     },
     {
         "Model": "Decision Tree",
-        "Accuracy": 0.6448,
-        "Precision": 0.5935,
-        "Recall": 0.2852,
-        "F1-Score": 0.3852,
-        "ROC-AUC": 0.6099,
+        "Accuracy": 0.4802,
+        "Precision": 0.4223,
+        "Recall": 0.9023,
+        "F1-Score": 0.5753,
+        "ROC-AUC": 0.6106,
+        "Threshold": 0.3247,
+        "CV_ROC_AUC": 0.6312,
+        "CV_ROC_AUC_STD": 0.0123,
+        "CV_ROC_AUC_FOLDS": [
+            0.6512,
+            0.6356,
+            0.6211,
+            0.6324,
+            0.6158
+        ],
         "ConfusionMatrix": {
-            "tn": 350,
-            "fp": 50,
-            "fn": 183,
-            "tp": 73
+            "tn": 84,
+            "fp": 316,
+            "fn": 25,
+            "tp": 231
         }
     },
     {
         "Model": "Logistic Regression",
-        "Accuracy": 0.5244,
-        "Precision": 0.4146,
-        "Recall": 0.5312,
-        "F1-Score": 0.4658,
+        "Accuracy": 0.3902,
+        "Precision": 0.3902,
+        "Recall": 1.0,
+        "F1-Score": 0.5614,
         "ROC-AUC": 0.5474,
+        "Threshold": 0.4165,
+        "CV_ROC_AUC": 0.4768,
+        "CV_ROC_AUC_STD": 0.0181,
+        "CV_ROC_AUC_FOLDS": [
+            0.4746,
+            0.4807,
+            0.4869,
+            0.4977,
+            0.444
+        ],
         "ConfusionMatrix": {
-            "tn": 208,
-            "fp": 192,
-            "fn": 120,
-            "tp": 136
+            "tn": 0,
+            "fp": 400,
+            "fn": 0,
+            "tp": 256
         }
     }
 ]

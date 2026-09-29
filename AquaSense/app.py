@@ -40,10 +40,36 @@ FEATURES = [
 
 # Model keys and friendly names
 MODEL_DISPLAY_NAMES = {
-    "xgboost": "XGBoost (Champion · Best F1)",
-    "random_forest": "Random Forest (Peak Accuracy)",
-    "decision_tree": "Decision Tree (Rule-Based)",
-    "logistic_regression": "Logistic Regression (Linear Baseline)"
+    "xgboost": "XGBoost",
+    "random_forest": "Random Forest",
+    "decision_tree": "Decision Tree",
+    "logistic_regression": "Logistic Regression"
+}
+
+# Maps a model_key back to the "Model" name train_and_analyze.py uses as the
+# key in candidate_models.json, so each model's own tuned threshold (picked
+# by maximizing F1 on out-of-fold predictions - see train_and_analyze.py)
+# can be looked up instead of using a hardcoded 0.5 for every model.
+MODEL_KEY_TO_CANDIDATE_NAME = {
+    "xgboost": "XGBoost",
+    "random_forest": "Random Forest",
+    "decision_tree": "Decision Tree",
+    "logistic_regression": "Logistic Regression"
+}
+
+# Physically-plausible input bounds - used only to reject nonsense input
+# (negative concentrations, a pH outside 0-14, etc), not to narrow what's
+# accepted beyond that.
+VALID_RANGES = {
+    "ph": (0, 14),
+    "hardness": (0, 1000),
+    "solids": (0, 100000),
+    "chloramines": (0, 50),
+    "sulfate": (0, 2000),
+    "conductivity": (0, 3000),
+    "organic": (0, 100),
+    "trihalo": (0, 500),
+    "turbidity": (0, 100),
 }
 
 # 1. LOAD TRAINED MODELS
@@ -86,6 +112,7 @@ CANDIDATE_MODELS = load_json_artifact("candidate_models.json", {})
 MODEL_METRICS = load_json_artifact("model_metrics.json", [])
 ANALYSIS_SUMMARY = load_json_artifact("analysis_summary.json", {})
 FEATURE_IMPORTANCES = load_json_artifact("feature_importance.json", {})
+MODEL_CARD = load_json_artifact("model_card.json", {})
 
 # WHO & EPA Reference Drinking Water Guidelines
 WATER_STANDARDS = {
@@ -326,38 +353,37 @@ def health_check():
         "service": "AquaSense AI Water Quality Prediction System",
         "version": "2.4.1",
         "models_available": list(MODELS.keys()),
-        "champion_model": "xgboost"
+        "champion_model": MODEL_CARD.get("champion_key", "xgboost")
     })
 
 @app.route("/api/metadata", methods=["GET"])
 def get_metadata():
-    """Returns candidate model benchmarks and active model metadata."""
-    # Find champion model metrics
-    best_key = "xgboost"
-    champ_metrics = {}
-    for m in MODEL_METRICS:
-        if m.get("Model", "").lower().startswith(best_key):
-            champ_metrics = {
-                "accuracy": m.get("Accuracy", 0.625),
-                "precision": m.get("Precision", 0.521),
-                "recall": m.get("Recall", 0.4844),
-                "f1": m.get("F1-Score", 0.502),
-                "roc_auc": m.get("ROC-AUC", 0.6437)
-            }
-            break
+    """Returns candidate model benchmarks and active (champion) model
+    metadata - read from model_card.json, produced fresh by
+    train_and_analyze.py each run, rather than hardcoded. The champion is
+    selected by cross-validated ROC-AUC and isn't always XGBoost."""
+    champion_name = MODEL_CARD.get("champion_model", "XGBoost")
+    champ_metrics = MODEL_CARD.get("champion_test_metrics", {})
 
     response = {
         "success": True,
         "metadata": {
-            "model_name": "XGBoost",
-            "model_display_name": "XGBoost Classifier (Composite Champion)",
-            "metrics": champ_metrics or {
-                "accuracy": 0.625,
-                "precision": 0.521,
-                "recall": 0.4844,
-                "f1": 0.502,
-                "roc_auc": 0.6437
-            },
+            "model_name": champion_name,
+            "model_display_name": f"{champion_name} (Champion - highest CV ROC-AUC)",
+            "metrics": champ_metrics,
+            "cv_roc_auc": MODEL_CARD.get("champion_cv_roc_auc"),
+            "baseline_accuracy": MODEL_CARD.get("baseline_test_accuracy"),
+            "baseline_roc_auc": MODEL_CARD.get("baseline_test_roc_auc"),
+            "cv_roc_auc_std": MODEL_CARD.get("champion_cv_roc_auc_std"),
+            "cv_roc_auc_folds": MODEL_CARD.get("champion_cv_roc_auc_folds"),
+            "runner_up_model": MODEL_CARD.get("runner_up_model"),
+            "runner_up_cv_roc_auc": MODEL_CARD.get("runner_up_cv_roc_auc"),
+            "runner_up_cv_roc_auc_std": MODEL_CARD.get("runner_up_cv_roc_auc_std"),
+            "runner_up_cv_roc_auc_folds": MODEL_CARD.get("runner_up_cv_roc_auc_folds"),
+            "champion_cv_margin_within_noise": MODEL_CARD.get("champion_cv_margin_within_noise"),
+            "champion_selection_note": MODEL_CARD.get("champion_selection_note"),
+            "test_vs_cv_disagreement": MODEL_CARD.get("test_vs_cv_disagreement"),
+            "test_vs_cv_disagreement_note": MODEL_CARD.get("test_vs_cv_disagreement_note"),
             "candidate_models": CANDIDATE_MODELS,
             "feature_names": FEATURES,
             "standards": WATER_STANDARDS
@@ -389,33 +415,54 @@ def get_analysis():
 def predict():
     """
     Main prediction endpoint.
-    Accepts 9 physicochemical parameters and model selection.
-    Evaluates ML model and checks WHO/EPA reference thresholds.
+    Accepts 9 physicochemical parameters and model selection. Reports both
+    the trained model's own prediction (at its own tuned threshold from
+    train_and_analyze.py) and an independent WHO/EPA guideline check, and
+    combines them transparently with a stated reason - neither one silently
+    overrides the other. Rejects invalid input instead of substituting a
+    silent default.
     """
     try:
         data = request.get_json(silent=True) or request.form.to_dict()
         if not data:
             return jsonify({"success": False, "error": "No input payload provided"}), 400
 
-        # Parse & sanitize inputs
-        def parse_float(val, default):
+        field_errors = {}
+
+        def parse_required_float(key, aliases, label):
+            raw = None
+            for k in [key] + aliases:
+                if data.get(k) not in (None, ""):
+                    raw = data.get(k)
+                    break
+            if raw is None:
+                field_errors[key] = f"{label} is required."
+                return None
             try:
-                v = float(val)
-                return v if not np.isnan(v) else default
+                value = float(raw)
             except (ValueError, TypeError):
-                return default
+                field_errors[key] = f"{label} must be a number."
+                return None
+            lo, hi = VALID_RANGES[key]
+            if not (lo <= value <= hi):
+                field_errors[key] = f"{label} must be between {lo} and {hi}."
+                return None
+            return value
 
         inputs = {
-            "ph": parse_float(data.get("ph"), 7.0),
-            "hardness": parse_float(data.get("hardness") or data.get("Hardness"), 180.0),
-            "solids": parse_float(data.get("solids") or data.get("Solids"), 15000.0),
-            "chloramines": parse_float(data.get("chloramines") or data.get("Chloramines"), 7.0),
-            "sulfate": parse_float(data.get("sulfate") or data.get("Sulfate"), 300.0),
-            "conductivity": parse_float(data.get("conductivity") or data.get("Conductivity"), 400.0),
-            "organic": parse_float(data.get("organic") or data.get("carbon") or data.get("Organic_carbon"), 10.0),
-            "trihalo": parse_float(data.get("trihalo") or data.get("thm") or data.get("Trihalomethanes"), 60.0),
-            "turbidity": parse_float(data.get("turbidity") or data.get("Turbidity"), 3.0)
+            "ph": parse_required_float("ph", [], "pH"),
+            "hardness": parse_required_float("hardness", ["Hardness"], "Hardness"),
+            "solids": parse_required_float("solids", ["Solids"], "Total Solids"),
+            "chloramines": parse_required_float("chloramines", ["Chloramines"], "Chloramines"),
+            "sulfate": parse_required_float("sulfate", ["Sulfate"], "Sulfate"),
+            "conductivity": parse_required_float("conductivity", ["Conductivity"], "Conductivity"),
+            "organic": parse_required_float("organic", ["carbon", "Organic_carbon"], "Organic Carbon"),
+            "trihalo": parse_required_float("trihalo", ["thm", "Trihalomethanes"], "Trihalomethanes"),
+            "turbidity": parse_required_float("turbidity", ["Turbidity"], "Turbidity"),
         }
+
+        if field_errors:
+            return jsonify({"success": False, "error": "Invalid input.", "fields": field_errors}), 400
 
         # Resolve model
         raw_model_key = str(data.get("model", "xgboost")).lower().replace("-", "_").replace(" ", "_")
@@ -429,7 +476,9 @@ def predict():
             model_key = "xgboost"
 
         pipeline = MODELS.get(model_key) or BEST_MODEL
-        model_name = MODEL_DISPLAY_NAMES.get(model_key, "XGBoost Classifier")
+        model_name = MODEL_DISPLAY_NAMES.get(model_key, "XGBoost")
+        candidate_name = MODEL_KEY_TO_CANDIDATE_NAME.get(model_key, "XGBoost")
+        threshold = float(CANDIDATE_MODELS.get(candidate_name, {}).get("threshold", 0.5))
 
         # Prepare DataFrame matching pipeline column names
         row = pd.DataFrame([{
@@ -444,36 +493,37 @@ def predict():
             "Turbidity": inputs["turbidity"]
         }])
 
-        # Perform ML Model Inference
-        raw_pred = int(pipeline.predict(row)[0])
+        # Perform ML Model Inference, using this model's own tuned threshold -
+        # not a hardcoded 0.5 (see train_and_analyze.py's threshold search).
         raw_probs = pipeline.predict_proba(row)[0]
         model_potable_prob = float(raw_probs[1])
-        model_risk_prob = float(raw_probs[0])
+        model_says_potable = model_potable_prob >= threshold
 
-        # Evaluate against WHO & EPA standards
+        # Evaluate against WHO & EPA standards - an independent signal.
         violations, param_status_list, safety_score = evaluate_parameters(inputs)
+        meets_guidelines = len(violations) == 0
 
-        # Domain calibration: If critical chemical parameters are severely breached, water is not potable
-        critical_violations_count = sum(1 for p in param_status_list if p.get("status") == "critical")
-        
-        # Physical safety calibration:
-        # A water sample with critical chemical/toxic breaches cannot have a high potable likelihood.
-        if critical_violations_count > 0 or safety_score < 60:
-            is_potable = False
-            prediction = 0
-            safety_factor = max(0.05, float(safety_score) / 100.0)
-            calibrated_potable_prob = min(model_potable_prob * safety_factor, 0.45)
+        # Combined verdict: potable only if the model AND the guideline check
+        # agree. Previously the model's own prediction was computed and then
+        # discarded entirely - is_potable was decided purely by the
+        # guideline score, so switching models never changed the verdict.
+        # It can now, and any disagreement is stated rather than hidden.
+        is_potable = model_says_potable and meets_guidelines
+        prediction = 1 if is_potable else 0
+
+        if model_says_potable and meets_guidelines:
+            verdict_reason = "The model predicts potable, and every parameter is within WHO/EPA guideline limits."
+        elif model_says_potable and not meets_guidelines:
+            verdict_reason = f"The model predicts potable, but {len(violations)} guideline threshold(s) were exceeded: {'; '.join(violations)}."
+        elif not model_says_potable and meets_guidelines:
+            verdict_reason = "Every parameter is within guideline limits, but the model predicts non-potable based on the overall pattern of this sample."
         else:
-            is_potable = True
-            prediction = 1
-            calibrated_potable_prob = model_potable_prob * 0.35 + (float(safety_score) / 100.0) * 0.65
+            verdict_reason = f"The model predicts non-potable, and {len(violations)} guideline threshold(s) were exceeded: {'; '.join(violations)}."
 
-        # Real calibrated prediction probability directly from the active model
-        potable_pct = int(round(calibrated_potable_prob * 100))
-        potable_pct = max(3, min(97, potable_pct))
+        potable_pct = int(round(model_potable_prob * 100))
         risk_pct = 100 - potable_pct
-
         confidence = potable_pct if is_potable else risk_pct
+
         recommendations = generate_recommendations(is_potable, violations)
         run_id = f"RUN-{uuid.uuid4().hex[:6].upper()}"
         timestamp = datetime.datetime.utcnow().isoformat() + "Z"
@@ -482,11 +532,15 @@ def predict():
             "success": True,
             "prediction": prediction,
             "label": "Potable" if is_potable else "Not Potable",
-            "probability": round(potable_pct / 100.0, 4),
+            "probability": round(model_potable_prob, 4),
             "model_name": model_name,
             "model_key": model_key,
+            "model_threshold": threshold,
             "diagnostic": {
                 "is_potable": is_potable,
+                "model_says_potable": model_says_potable,
+                "meets_guidelines": meets_guidelines,
+                "verdict_reason": verdict_reason,
                 "score": safety_score,
                 "confidence": confidence,
                 "risk": risk_pct,

@@ -360,7 +360,11 @@ function evaluateWaterQuality(inputs, modelKey = 'xgboost', saveToStorage = true
     }
   }
 
-  const modelDisplayName = MODEL_DISPLAY_NAMES[modelKey] || 'XGBoost Classifier (Production)';
+  // This is a hand-written formula, not the trained model named by modelKey -
+  // it only runs when the real backend is unreachable (see
+  // predictWaterQualityLive above). Label it as an offline estimate rather
+  // than claiming to be "XGBoost" / "Random Forest" etc., which it isn't.
+  const offlineModelLabel = `${MODEL_DISPLAY_NAMES[modelKey] || 'XGBoost'} (offline estimate)`;
 
   const result = {
     inputs: { ph, hardness, solids, chloramines, sulfate, conductivity, organic, trihalo, turbidity },
@@ -378,12 +382,16 @@ function evaluateWaterQuality(inputs, modelKey = 'xgboost', saveToStorage = true
       potable: potablePct,
       non_potable: nonPotablePct
     },
+    modelSaysPotable: isPotable,
+    meetsGuidelines: criticalFlagsCount === 0,
+    verdictReason: "Offline estimate - the prediction server isn't reachable, so this is a local approximation, not the trained model's own prediction.",
     flags,
     violations: flags,
     breakdown,
     recommendations,
-    modelName: modelDisplayName,
-    disclaimer: 'This prediction is an ML-based screening aid and should not replace certified laboratory water testing.',
+    modelName: offlineModelLabel,
+    isLiveBackend: false,
+    disclaimer: 'This is an offline, local estimate (the prediction server is unreachable) - not the trained model\'s own output, and not a substitute for certified laboratory water testing.',
     timestamp: new Date().toISOString(),
     runId: 'RUN-' + Math.floor(1000 + Math.random() * 9000)
   };
@@ -498,7 +506,7 @@ const API_BASE_URL = (window.location.protocol.startsWith('http'))
   ? window.location.origin 
   : 'http://127.0.0.1:5000';
 
-async function predictWaterQualityLive(inputs, modelKey = 'xgboost') {
+async function predictWaterQualityLive(inputs, modelKey = 'xgboost', saveToStorage = true) {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3500);
@@ -518,11 +526,11 @@ async function predictWaterQualityLive(inputs, modelKey = 'xgboost') {
         const diag = data.diagnostic || (typeof data.prediction === 'object' ? data.prediction : {});
         const isPotable = data.label ? (data.label === 'Potable') : (diag.is_potable ?? (data.prediction === 1));
         const probs = diag.probabilities || {};
-        const potablePct = probs.potable !== undefined 
-          ? probs.potable 
+        const potablePct = probs.potable !== undefined
+          ? probs.potable
           : (data.probability !== undefined ? Math.round(data.probability * 100) : (isPotable ? diag.confidence : 10));
-        const riskPct = probs.non_potable !== undefined 
-          ? probs.non_potable 
+        const riskPct = probs.non_potable !== undefined
+          ? probs.non_potable
           : Math.round(100 - potablePct);
         const score = diag.score ?? 85;
         const confidence = diag.confidence ?? (isPotable ? potablePct : riskPct);
@@ -545,37 +553,47 @@ async function predictWaterQualityLive(inputs, modelKey = 'xgboost') {
             potable: potablePct,
             non_potable: riskPct
           },
+          // Both independent signals, and why they agree/disagree - previously
+          // computed correctly by the backend but dropped here, so the one
+          // concrete benefit of fixing the backend's override bug never
+          // reached the UI. See app.py's predict() for how these are derived.
+          modelSaysPotable: diag.model_says_potable,
+          meetsGuidelines: diag.meets_guidelines,
+          verdictReason: diag.verdict_reason || '',
           flags: data.violations || [],
           violations: data.violations || [],
           parameters: data.parameters || [],
           attributions: data.attributions || [],
           recommendations: data.recommendations || [],
           modelName: modelName,
+          modelThreshold: data.model_threshold,
           disclaimer: data.disclaimer || 'This prediction is an ML-based screening aid and should not replace certified laboratory water testing.',
           timestamp: data.timestamp,
           runId: data.run_id,
           isLiveBackend: true
         };
-        try {
-          localStorage.setItem('aquasense_prediction', JSON.stringify(result));
-          sessionStorage.setItem('aquasense_prediction', JSON.stringify(result));
-          
-          // Append to audit history
-          const history = JSON.parse(localStorage.getItem('aquasense_history') || '[]');
-          history.unshift({
-            runId: result.runId,
-            timestamp: result.timestamp,
-            isPotable: result.isPotable,
-            score: result.score,
-            confidence: result.confidence,
-            potablePct: result.potablePct,
-            model: result.modelName,
-            ph: result.params?.ph,
-            solids: result.params?.solids || result.params?.Solids,
-            turbidity: result.params?.turbidity || result.params?.Turbidity
-          });
-          localStorage.setItem('aquasense_history', JSON.stringify(history.slice(0, 15)));
-        } catch(e) {}
+        if (saveToStorage) {
+          try {
+            localStorage.setItem('aquasense_prediction', JSON.stringify(result));
+            sessionStorage.setItem('aquasense_prediction', JSON.stringify(result));
+
+            // Append to audit history
+            const history = JSON.parse(localStorage.getItem('aquasense_history') || '[]');
+            history.unshift({
+              runId: result.runId,
+              timestamp: result.timestamp,
+              isPotable: result.isPotable,
+              score: result.score,
+              confidence: result.confidence,
+              potablePct: result.potablePct,
+              model: result.modelName,
+              ph: result.params?.ph,
+              solids: result.params?.solids || result.params?.Solids,
+              turbidity: result.params?.turbidity || result.params?.Turbidity
+            });
+            localStorage.setItem('aquasense_history', JSON.stringify(history.slice(0, 15)));
+          } catch(e) {}
+        }
         return result;
       }
     }
@@ -584,8 +602,11 @@ async function predictWaterQualityLive(inputs, modelKey = 'xgboost') {
     console.info('[AquaSense] Using client-side evaluation engine:', err.message);
   }
 
-  // Graceful fallback to client inference
-  return evaluateWaterQuality(inputs, modelKey);
+  // Graceful fallback to client inference - only reached when the backend is
+  // genuinely unreachable (offline / static hosting). This is NOT the real
+  // trained model; callers should treat isLiveBackend:false as "estimate
+  // only" (see evaluateWaterQuality below).
+  return evaluateWaterQuality(inputs, modelKey, saveToStorage);
 }
 
 /**

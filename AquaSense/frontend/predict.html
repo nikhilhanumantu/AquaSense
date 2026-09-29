@@ -716,8 +716,9 @@
         modalTitle.className = "font-headline-md text-headline-md font-bold text-tertiary";
         modalTitle.textContent = "POTABLE";
         modalBadge.className = "px-space-xs py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold";
-        modalBadge.textContent = "Meets Screening Criteria";
-        modalDesc.textContent = "Water sample parameters conform to reference WHO & EPA screening thresholds. (Screening aid only; certified laboratory testing recommended).";
+        modalBadge.textContent = evalResult.isLiveBackend === false ? "Offline Estimate" : "Meets Screening Criteria";
+        modalDesc.textContent = evalResult.verdictReason
+          || "Water sample parameters conform to reference WHO & EPA screening thresholds. (Screening aid only; certified laboratory testing recommended).";
         if (modalProbLabel) modalProbLabel.textContent = "Potable Likelihood";
         modalProb.textContent = evalResult.potablePct + "%";
         modalProb.className = "font-display-lg text-headline-lg font-extrabold text-tertiary";
@@ -728,11 +729,12 @@
         modalTitle.className = "font-headline-md text-headline-md font-bold text-error";
         modalTitle.textContent = "NON-POTABLE";
         modalBadge.className = "px-space-xs py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold";
-        modalBadge.textContent = "Screening Alert: Treatment Recommended";
+        modalBadge.textContent = evalResult.isLiveBackend === false ? "Offline Estimate" : "Screening Alert: Treatment Recommended";
         const flagsList = evalResult.violations || evalResult.flags || [];
-        modalDesc.textContent = flagsList.length > 0 
-          ? "Unsafe thresholds detected: " + flagsList.join(", ") 
-          : "Parameters exceed reference screening guidelines. Treatment recommended before consumption.";
+        modalDesc.textContent = evalResult.verdictReason
+          || (flagsList.length > 0
+            ? "Unsafe thresholds detected: " + flagsList.join(", ")
+            : "Parameters exceed reference screening guidelines. Treatment recommended before consumption.");
         if (modalProbLabel) modalProbLabel.textContent = "Contamination Risk";
         modalProb.textContent = evalResult.riskPct + "%";
         modalProb.className = "font-display-lg text-headline-lg font-extrabold text-error";

@@ -952,8 +952,13 @@
                     });
                 }
 
-                // Client-side potability logic synchronized with trained ML pipeline
-                function evaluatePotability(saveToStorage = false) {
+                // Calls the real trained model at /api/predict (see app.js's
+                // predictWaterQualityLive), falling back to a local estimate
+                // only if the server is genuinely unreachable. Previously this
+                // called the client-side formula directly and never contacted
+                // the backend at all, regardless of whether it was running.
+                let evalRequestSeq = 0;
+                async function evaluatePotability(saveToStorage = false) {
                     const inputs = {
                         ph: parseFloat(document.getElementById('param-ph').value) || 7.0,
                         hardness: parseFloat(document.getElementById('param-hardness').value) || 180,
@@ -966,8 +971,25 @@
                         turbidity: parseFloat(document.getElementById('param-turbidity').value) || 3.0
                     };
 
-                    // Execute shared inference engine (only writes to storage if user explicitly requests)
-                    const evalResult = evaluateWaterQuality(inputs, 'xgboost', saveToStorage);
+                    // Guard against out-of-order responses: if the user keeps
+                    // typing, an older in-flight request could resolve after a
+                    // newer one and overwrite the display with stale results.
+                    const mySeq = ++evalRequestSeq;
+                    const evalResult = await predictWaterQualityLive(inputs, 'xgboost', saveToStorage);
+                    if (mySeq !== evalRequestSeq) return;
+
+                    const liveIndicator = document.getElementById('live-indicator');
+                    if (liveIndicator) {
+                        if (evalResult.isLiveBackend === false) {
+                            liveIndicator.className = 'px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center gap-1';
+                            liveIndicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-on-surface-variant"></span>OFFLINE ESTIMATE';
+                            liveIndicator.title = evalResult.disclaimer || '';
+                        } else {
+                            liveIndicator.className = 'px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1';
+                            liveIndicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>ACTIVE MODEL';
+                            liveIndicator.title = evalResult.modelName || '';
+                        }
+                    }
 
                     // Sync the Full Diagnostic Report link with the exact current parameter values
                     const reportLink = document.getElementById('main-view-report-link');
@@ -1024,8 +1046,9 @@
                         statusTag.className = 'inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-tertiary text-on-tertiary font-title-md text-body-md font-bold shadow-sm';
                         statusTag.innerHTML = '<span class="material-symbols-outlined text-[16px]">check_circle</span> Safe for Drinking';
                         verdictTitle.innerText = 'POTABLE WATER';
-                        verdictDesc.innerText = 'The given water parameters conform to WHO & EPA standards and are safe for direct consumption.';
-                        
+                        verdictDesc.innerText = evalResult.verdictReason
+                            || 'The given water parameters conform to WHO & EPA standards and are safe for direct consumption.';
+
                         potCircle.setAttribute('class', 'stroke-tertiary transition-all duration-500');
                         nonPotCircle.setAttribute('class', 'stroke-surface-container-high transition-all duration-500');
                         potPct.className = 'font-headline-sm text-headline-sm font-extrabold text-tertiary';
@@ -1038,8 +1061,10 @@
                         statusTag.className = 'inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-error text-on-error font-title-md text-body-md font-bold shadow-sm';
                         statusTag.innerHTML = '<span class="material-symbols-outlined text-[16px]">dangerous</span> Hazardous · Non-Potable';
                         verdictTitle.innerText = 'NOT POTABLE';
-                        
-                        if (!evalResult.flags || evalResult.flags.length === 0) {
+
+                        if (evalResult.verdictReason) {
+                            verdictDesc.innerText = evalResult.verdictReason;
+                        } else if (!evalResult.flags || evalResult.flags.length === 0) {
                             verdictDesc.innerText = 'Critical chemical thresholds exceeded. Treatment filtration or reverse osmosis required before use.';
                         } else if (evalResult.flags.length <= 3) {
                             verdictDesc.innerText = `Exceeded parameters: ${evalResult.flags.join(', ')}. Treatment required before consumption.`;
@@ -1072,10 +1097,17 @@
                     evaluatePotability(false);
                 }
 
-                // Attach real-time input listeners to all 9 form parameters
+                // Attach real-time input listeners to all 9 form parameters.
+                // Debounced since each evaluation is now a real network call
+                // to /api/predict, not an instant local calculation - without
+                // this, fast typing would fire a request per keystroke.
+                let evalDebounceTimer = null;
                 ['param-ph', 'param-hardness', 'param-solids', 'param-chloramines', 'param-sulfate', 'param-conductivity', 'param-carbon', 'param-trihalo', 'param-turbidity'].forEach(id => {
                     const el = document.getElementById(id);
-                    if (el) el.addEventListener('input', () => evaluatePotability(false));
+                    if (el) el.addEventListener('input', () => {
+                        clearTimeout(evalDebounceTimer);
+                        evalDebounceTimer = setTimeout(() => evaluatePotability(false), 350);
+                    });
                 });
 
                 // Modal triggers
